@@ -75,7 +75,7 @@ export default function NavBar() {
               Home
             </a>
             <a
-              href="#service"
+              href="#services"
               className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
             >
               Service
@@ -158,7 +158,7 @@ export default function NavBar() {
               Home
             </a>
             <a
-              href="#service"
+              href="#services"
               className={`block font-light text-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-150"
