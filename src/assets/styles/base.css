@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Hero Background Image */
-.hero-bg {
+.bg-images {
   background-image: url("../common/bg.png");
   background-size: cover;
   background-position: center;
@@ -14,7 +14,7 @@
 }
 
 /* Optional: Add overlay for better text readability */
-.hero-bg::before {
+.bg-images::before {
   content: "";
   position: absolute;
   top: 0;
@@ -26,7 +26,7 @@
 }
 
 /* Ensure content is above the overlay */
-.hero-bg > * {
+.bg-images > * {
   position: relative;
   z-index: 1;
 }
@@ -53,7 +53,7 @@
 }
 
 .project-image-3 {
-  background-image: url("../common/Sonic.jpg");
+  background-image: url("../common/Realstate.png");
   background-size: cover;
   background-position: center;
 }

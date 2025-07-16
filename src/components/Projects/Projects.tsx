@@ -1,108 +1,75 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import { Icon } from "@iconify/react";
+import { motion } from "framer-motion";
+import { useProjectData } from "@/hooks/MockData/Projects/useProjectData";
+import { useScrollReveal } from "@/hooks/ScrollAnimation/useScrollReaveal";
+import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState("all");
+  const { projects, filterOptions, activeFilter, setActiveFilter } =
+    useProjectData();
 
-  const projects = [
-    {
-      id: 1,
-      title: "Modern E-commerce Platform",
-      category: "web",
-      imageClass: "project-image-1",
-      technologies: ["React", "Next.js", "Tailwind CSS", "Stripe"],
-      description:
-        "A full-featured e-commerce platform with product filtering, cart functionality, and secure checkout.",
-      link: "#",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "Brand Identity Design",
-      category: "design",
-      imageClass: "project-image-2",
-      technologies: ["Illustrator", "Photoshop", "Figma"],
-      description:
-        "Complete brand identity package including logo design, color palette, typography, and brand guidelines.",
-      link: "#",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "Mobile Fitness App",
-      category: "mobile",
-      imageClass: "project-image-3",
-      technologies: ["React Native", "Firebase", "Redux"],
-      description:
-        "Cross-platform fitness application with workout tracking, nutrition planning, and progress analytics.",
-      link: "#",
-      featured: false,
-    },
-    {
-      id: 4,
-      title: "Corporate Website Redesign",
-      category: "web",
-      imageClass: "project-image-4",
-      technologies: ["WordPress", "Custom CSS", "JavaScript"],
-      description:
-        "Complete redesign of a corporate website focusing on improved user experience and modern aesthetics.",
-      link: "#",
-      featured: false,
-    },
-    {
-      id: 5,
-      title: "Product Packaging Design",
-      category: "design",
-      imageClass: "project-image-5",
-      technologies: ["Illustrator", "Photoshop", "InDesign"],
-      description:
-        "Creative packaging design for a premium skincare product line with eco-friendly materials.",
-      link: "#",
-      featured: true,
-    },
-    {
-      id: 6,
-      title: "Restaurant Ordering System",
-      category: "web",
-      imageClass: "project-image-6",
-      technologies: ["Vue.js", "Node.js", "MongoDB"],
-      description:
-        "Digital ordering system for restaurants with real-time updates, inventory management, and analytics.",
-      link: "#",
-      featured: false,
-    },
-  ];
+  const {
+    sectionVariants,
+    titleVariants,
+    descriptionVariants,
+    cardVariants,
+    viewportOptions,
+  } = useScrollReveal({ duration: 0.8, threshold: 0.1 });
 
-  const filteredProjects =
-    activeFilter === "all"
+  const {
+    sectionVariants: exitSectionVariants,
+    titleVariants: exitTitleVariants,
+    descriptionVariants: exitDescriptionVariants,
+    cardVariants: exitCardVariants,
+    viewportOptions: exitViewportOptions,
+  } = useExitAnimation({ exitDuration: 0.5, threshold: 0.1, playOnce: false });
+
+  const filteredProjects = useMemo(() => {
+    return activeFilter === "all"
       ? projects
       : projects.filter((project) => project.category === activeFilter);
-
-  const filterOptions = [
-    { id: "all", label: "All Projects" },
-    { id: "web", label: "Web Development" },
-    { id: "design", label: "Graphic Design" },
-    { id: "mobile", label: "Mobile Apps" },
-  ];
+  }, [projects, activeFilter]);
 
   return (
-    <section id="projects" className="py-20 px-6 bg-dark">
+    <motion.section
+      id="projects"
+      className="py-20 px-6 bg-dark"
+      variants={exitSectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={exitViewportOptions}
+    >
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-light animate-slide-in-left">
+          <motion.h2
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-light"
+            variants={exitTitleVariants}
+          >
             My Projects
-          </h2>
-          <p className="text-lg text-secondary max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+          </motion.h2>
+          <motion.p
+            className="text-lg text-secondary max-w-2xl mx-auto"
+            variants={exitDescriptionVariants}
+          >
             Explore my recent work and creative solutions
-          </p>
+          </motion.p>
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up animation-delay-400">
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 mb-12"
+          variants={exitSectionVariants}
+          initial="hidden"
+          whileInView="visible"
+          exit="exit"
+          viewport={exitViewportOptions}
+        >
           {filterOptions.map((option) => (
-            <button
+            <motion.button
               key={option.id}
               onClick={() => setActiveFilter(option.id)}
               className={`px-6 py-2 rounded-full transition-all duration-300 ${
@@ -110,20 +77,29 @@ export default function Projects() {
                   ? "bg-primary text-dark font-medium"
                   : "border border-secondary text-secondary hover:border-primary hover:text-primary"
               }`}
+              variants={exitCardVariants}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.95 }}
             >
               {option.label}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          key={activeFilter} // Force re-animation when filter changes
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={exitSectionVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {filteredProjects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              className={`bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105 animate-service-card service-delay-${
-                index % 3
-              }`}
+              className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105"
+              variants={exitCardVariants}
+              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
             >
               <div className="relative">
                 {/* Project Image */}
@@ -173,21 +149,24 @@ export default function Projects() {
                   <Icon icon="mdi:arrow-right" className="ml-1" />
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* View All Projects Button */}
-        <div className="text-center mt-12 animate-fade-in-up animation-delay-600">
+        <motion.div
+          className="text-center mt-12"
+          variants={exitDescriptionVariants}
+        >
           <a
             href="#"
-            className="inline-flex items-center gap-2 bg-primary text-dark font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg"
+            className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg"
           >
             View All Projects
             <Icon icon="mdi:arrow-right" className="text-xl" />
           </a>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import { Marquee } from "../magicui/marquee";
 
 export default function Hero() {
   return (
-    <main id="home" className="hero-bg min-h-screen flex items-center">
+    <main id="home" className="bg-images min-h-screen flex items-center">
       <div className="container mx-auto max-w-6xl px-6 py-8">
         {/* Two Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">

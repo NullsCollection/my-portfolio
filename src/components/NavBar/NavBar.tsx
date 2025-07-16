@@ -117,6 +117,12 @@ export default function NavBar() {
             <div className="transform hover:scale-110 transition-all duration-300 cursor-pointer">
               <Icon
                 icon="solar:letter-bold"
+                onClick={() =>
+                  window.open(
+                    "https://mail.google.com/mail/?view=cm&fs=1&to=raffy7792@gmail.com",
+                    "_blank"
+                  )
+                }
                 className="text-5xl bg-light hover:text-primary transition-colors duration-300 p-2 rounded-full cursor-pointer"
               />
             </div>
