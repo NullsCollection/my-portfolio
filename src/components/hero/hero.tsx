@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 export default function Hero() {
   return (
     <main id="home" className="hero-bg min-h-screen flex items-center">
-      <div className="h-[70vh] w-fit max-w-7xl mx-auto px-6 py-8">
+      <div className="container mx-auto max-w-6xl px-6 py-8">
         {/* Two Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Column - Welcome Message & Action Buttons */}

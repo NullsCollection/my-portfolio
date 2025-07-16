@@ -11,6 +11,12 @@
   --light-blue-color: #425b8d;
   --secondary-color: #7990be;
 
+  --gradient-primary: linear-gradient(90deg, #a43bff, #01c2b2);
+  --gradient-secondary: linear-gradient(270deg, #01c2b2, #a43bff);
+  --animation-duration-slow: 3s;
+  --animation-duration-normal: 2s;
+  --animation-duration-fast: 1s;
+
   /* Font Family */
   --font-poppins: "Poppins", sans-serif;
 }

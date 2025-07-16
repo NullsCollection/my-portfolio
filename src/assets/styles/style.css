@@ -64,3 +64,69 @@
     opacity: 1;
   }
 }
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Scroll Reveal Animations */
+.scroll-reveal {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+}
+
+.reveal-from-bottom {
+  transform: translateY(40px);
+}
+
+.reveal-from-bottom.revealed {
+  transform: translateY(0);
+}
+
+.reveal-from-left {
+  transform: translateX(-40px);
+}
+
+.reveal-from-left.revealed {
+  transform: translateX(0);
+}
+
+.reveal-from-right {
+  transform: translateX(40px);
+}
+
+.reveal-from-right.revealed {
+  transform: translateX(0);
+}
+
+/* Service card specific animations */
+.animate-service-card {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* Staggered animation delays for service cards */
+.service-delay-0 {
+  animation-delay: 0.2s;
+}
+
+.service-delay-1 {
+  animation-delay: 0.4s;
+}
+
+.service-delay-2 {
+  animation-delay: 0.6s;
+}
+
+.service-delay-3 {
+  animation-delay: 0.8s;
+}

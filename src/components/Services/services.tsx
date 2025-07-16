@@ -1,8 +1,24 @@
 "use client";
 import React from "react";
 import { Icon } from "@iconify/react";
+import { BorderBeam } from "@/components/magicui/border-beam";
+import { motion } from "framer-motion";
+import { useScrollReveal } from "@/hooks/ScrollAnimation/useScrollReaveal";
 
 export default function Services() {
+  // Get animation variants from custom hook with options
+  const { 
+    sectionVariants, 
+    titleVariants, 
+    descriptionVariants, 
+    cardVariants,
+    viewportOptions 
+  } = useScrollReveal({
+    playOnce: false,  // Animate every time element enters viewport
+    threshold: 0.2,   // Trigger when 20% of element is visible
+    duration: 0.7     // Animation duration in seconds
+  });
+
   const services = [
     {
       icon: "mdi:web",
@@ -30,44 +46,65 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 px-6">
+    <motion.section
+      id="services"
+      className="py-20 px-6"
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={viewportOptions}
+      variants={sectionVariants}
+    >
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-light">
+          <motion.h2
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-light"
+            variants={titleVariants}
+          >
             My Services
-          </h2>
-          <p className="text-lg text-secondary max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            className="text-lg text-secondary max-w-2xl mx-auto"
+            variants={descriptionVariants}
+          >
             I offer a range of professional services to help bring your ideas to
             life
-          </p>
+          </motion.p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, index) => (
-            <div
+            <motion.div
               key={index}
-              className="text-center p-6 rounded-lg transition-all duration-300 hover:scale-105"
+              variants={cardVariants}
+              className="text-center p-6 rounded-lg transition-all duration-300 hover:scale-105 relative"
               style={{ backgroundColor: "var(--light-bg-color)" }}
+              custom={index}
             >
-              <div className="mb-4">
-                <Icon
-                  icon={service.icon}
-                  className="text-5xl mx-auto"
-                  style={{ color: "var(--primary-color)" }}
+              <div className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <BorderBeam
+                  colorFrom="#A43BFF"
+                  colorTo="#01c2b2"
+                  duration={3}
+                  size={100}
+                  borderWidth={2}
                 />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-light">
+              <div className="mb-4 flex justify-center">
+                <div className="text-4xl text-primary">
+                  <Icon icon={service.icon} />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold mb-2 text-light">
                 {service.title}
               </h3>
-              <p className="text-secondary text-sm leading-relaxed">
-                {service.description}
-              </p>
-            </div>
+              <p className="text-secondary">{service.description}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }

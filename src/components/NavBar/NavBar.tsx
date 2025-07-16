@@ -28,8 +28,8 @@ export default function NavBar() {
     >
       <div className="w-full mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          {/* Left Section - Mobile/Tablet Brand */}
-          <div className="lg:hidden flex items-center">
+          {/* Left Section - Mobile/Small Tablet Brand */}
+          <div className="md:hidden flex items-center">
             <a
               href="#home"
               className="font-bold text-xl sm:text-2xl text-primary transition-colors duration-300"
