@@ -4,8 +4,12 @@ import { Icon } from "@iconify/react";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/ScrollAnimation/useScrollReaveal";
+import { useSimulatedLoading } from "@/hooks/useLoadingState";
+import { ServiceCardSkeleton } from "@/components/ui/SkeletonCard";
 
 export default function Services() {
+  const { isLoading } = useSimulatedLoading(800, true);
+  
   // Get animation variants from custom hook with options
   const { 
     sectionVariants, 
@@ -75,34 +79,41 @@ export default function Services() {
 
         {/* Services Grid */}
         <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              className="text-center p-6 rounded-lg transition-all duration-300 hover:scale-105 relative"
-              style={{ backgroundColor: "var(--light-bg-color)" }}
-              custom={index}
-            >
-              <div className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300">
-                <BorderBeam
-                  colorFrom="#A43BFF"
-                  colorTo="#01c2b2"
-                  duration={3}
-                  size={100}
-                  borderWidth={2}
-                />
-              </div>
-              <div className="mb-4 flex justify-center">
-                <div className="text-4xl text-primary">
-                  <Icon icon={service.icon} />
+          {isLoading ? (
+            // Show skeleton loaders while loading
+            Array.from({ length: 4 }).map((_, index) => (
+              <ServiceCardSkeleton key={`skeleton-${index}`} />
+            ))
+          ) : (
+            services.map((service, index) => (
+              <motion.div
+                key={index}
+                variants={cardVariants}
+                className="text-center p-6 rounded-lg transition-all duration-300 hover:scale-105 relative"
+                style={{ backgroundColor: "var(--light-bg-color)" }}
+                custom={index}
+              >
+                <div className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300">
+                  <BorderBeam
+                    colorFrom="#A43BFF"
+                    colorTo="#01c2b2"
+                    duration={3}
+                    size={100}
+                    borderWidth={2}
+                  />
                 </div>
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-light">
-                {service.title}
-              </h3>
-              <p className="text-secondary">{service.description}</p>
-            </motion.div>
-          ))}
+                <div className="mb-4 flex justify-center">
+                  <div className="text-4xl text-primary">
+                    <Icon icon={service.icon} />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-light">
+                  {service.title}
+                </h3>
+                <p className="text-secondary">{service.description}</p>
+              </motion.div>
+            ))
+          )}
         </motion.div>
       </div>
     </motion.section>

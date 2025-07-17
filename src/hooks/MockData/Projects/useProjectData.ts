@@ -1,20 +1,11 @@
 import { useState, useMemo } from "react";
+import { Project as ProjectType, ProjectFilter } from "@/types";
 
-export interface Project {
+export interface Project extends Omit<ProjectType, 'id'> {
   id: number;
-  title: string;
-  category: string;
-  imageClass: string;
-  technologies: string[];
-  description: string;
-  link: string;
-  featured: boolean;
 }
 
-export interface FilterOption {
-  id: string;
-  label: string;
-}
+export interface FilterOption extends ProjectFilter {}
 
 const mockProjects: Project[] = [
   {
@@ -93,8 +84,15 @@ const filterOptions: FilterOption[] = [
   { id: "mobile", label: "Mobile Apps" },
 ];
 
-export const useProjectData = () => {
-  const [activeFilter, setActiveFilter] = useState("all");
+export interface UseProjectDataReturn {
+  projects: Project[];
+  filterOptions: FilterOption[];
+  activeFilter: string;
+  setActiveFilter: (filter: string) => void;
+}
+
+export const useProjectData = (): UseProjectDataReturn => {
+  const [activeFilter, setActiveFilter] = useState<string>("all");
 
   return {
     projects: mockProjects,

@@ -5,10 +5,14 @@ import { motion } from "framer-motion";
 import { useProjectData } from "@/hooks/MockData/Projects/useProjectData";
 import { useScrollReveal } from "@/hooks/ScrollAnimation/useScrollReaveal";
 import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
+import { useSimulatedLoading } from "@/hooks/useLoadingState";
+import { ProjectCardSkeleton } from "@/components/ui/SkeletonCard";
 
 export default function Projects() {
   const { projects, filterOptions, activeFilter, setActiveFilter } =
     useProjectData();
+
+  const { isLoading } = useSimulatedLoading(1200, true);
 
   const {
     sectionVariants,
@@ -94,63 +98,70 @@ export default function Projects() {
           initial="hidden"
           animate="visible"
         >
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105"
-              variants={exitCardVariants}
-              whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-            >
-              <div className="relative">
-                {/* Project Image */}
-                <div
-                  className={`h-56 ${project.imageClass}`}
-                  style={{
-                    backgroundColor: "var(--light-bg-color)", // Fallback color if image fails to load
-                  }}
-                ></div>
-                {/* Featured Badge */}
-                {project.featured && (
-                  <div className="absolute top-4 right-4 bg-primary text-dark px-3 py-1 rounded-full text-sm font-medium">
-                    Featured
-                  </div>
-                )}
-              </div>
-
-              {/* Project Info */}
-              <div className="p-6 relative">
-                <div className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-
-                <h3 className="text-xl font-bold mb-2 text-light">
-                  {project.title}
-                </h3>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {project.technologies.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1 rounded-full bg-dark text-secondary"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+          {isLoading ? (
+            // Show skeleton loaders while loading
+            Array.from({ length: 6 }).map((_, index) => (
+              <ProjectCardSkeleton key={`skeleton-${index}`} />
+            ))
+          ) : (
+            filteredProjects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105"
+                variants={exitCardVariants}
+                whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+              >
+                <div className="relative">
+                  {/* Project Image */}
+                  <div
+                    className={`h-56 ${project.imageClass}`}
+                    style={{
+                      backgroundColor: "var(--light-bg-color)", // Fallback color if image fails to load
+                    }}
+                  ></div>
+                  {/* Featured Badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 right-4 bg-primary text-dark px-3 py-1 rounded-full text-sm font-medium">
+                      Featured
+                    </div>
+                  )}
                 </div>
 
-                <p className="text-secondary mb-4 text-sm">
-                  {project.description}
-                </p>
+                {/* Project Info */}
+                <div className="p-6 relative">
+                  <div className="absolute inset-0 rounded-lg opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
 
-                <a
-                  href={project.link}
-                  className="inline-flex items-center text-primary hover:text-primary-light transition-colors duration-300"
-                >
-                  View Project
-                  <Icon icon="mdi:arrow-right" className="ml-1" />
-                </a>
-              </div>
-            </motion.div>
-          ))}
+                  <h3 className="text-xl font-bold mb-2 text-light">
+                    {project.title}
+                  </h3>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    {project.technologies.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="text-xs px-3 py-1 rounded-full bg-dark text-secondary"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <p className="text-secondary mb-4 text-sm">
+                    {project.description}
+                  </p>
+
+                  <a
+                    href={project.link}
+                    className="inline-flex items-center text-primary hover:text-primary-light transition-colors duration-300"
+                  >
+                    View Project
+                    <Icon icon="mdi:arrow-right" className="ml-1" />
+                  </a>
+                </div>
+              </motion.div>
+            ))
+          )}
         </motion.div>
 
         {/* View All Projects Button */}

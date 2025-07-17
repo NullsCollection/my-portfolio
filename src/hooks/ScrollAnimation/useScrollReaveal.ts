@@ -1,4 +1,5 @@
 import { Variants } from "framer-motion";
+import { ScrollRevealOptions } from "@/types";
 
 export interface ScrollRevealVariants {
   sectionVariants: Variants;
@@ -9,12 +10,6 @@ export interface ScrollRevealVariants {
     once: boolean;
     amount: number;
   };
-}
-
-export interface ScrollRevealOptions {
-  playOnce?: boolean;
-  threshold?: number;
-  duration?: number;
 }
 
 /**

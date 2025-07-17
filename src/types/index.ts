@@ -1,0 +1,189 @@
+/**
+ * Common TypeScript type definitions for the portfolio application
+ */
+
+// Navigation Types
+export interface NavItem {
+  id: string;
+  label: string;
+  href: string;
+}
+
+export interface ScrollOptions {
+  behavior?: ScrollBehavior;
+  block?: ScrollLogicalPosition;
+  inline?: ScrollLogicalPosition;
+  offset?: number;
+}
+
+// Project Types
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  imageClass: string;
+  imageUrl?: string;
+  technologies: string[];
+  category: string;
+  link: string;
+  featured?: boolean;
+  githubUrl?: string;
+  demoUrl?: string;
+}
+
+export interface ProjectFilter {
+  id: string;
+  label: string;
+}
+
+// Service Types
+export interface Service {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+  features?: string[];
+}
+
+// Skill Types
+export interface Skill {
+  id: string;
+  name: string;
+  level: number;
+  icon: string;
+  category: SkillCategory;
+}
+
+export type SkillCategory = 'Frontend' | 'Backend' | 'Design' | 'DevOps' | 'Mobile' | 'Database';
+
+// Achievement Types
+export interface Achievement {
+  id: string;
+  number: string;
+  label: string;
+  icon: string;
+  description?: string;
+}
+
+// Contact Types
+export interface ContactInfo {
+  id: string;
+  icon: string;
+  label: string;
+  value: string;
+  link?: string;
+}
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+
+// Social Media Types
+export interface SocialLink {
+  id: string;
+  name: string;
+  icon: string;
+  url: string;
+  color?: string;
+}
+
+// Animation Types
+export interface AnimationOptions {
+  duration?: number;
+  delay?: number;
+  threshold?: number;
+  playOnce?: boolean;
+}
+
+export interface ScrollRevealOptions extends AnimationOptions {
+  exitDuration?: number;
+}
+
+// Component Props Types
+export interface BaseComponentProps {
+  className?: string;
+  children?: React.ReactNode;
+}
+
+export interface SectionProps extends BaseComponentProps {
+  id: string;
+  title?: string;
+  subtitle?: string;
+}
+
+// Loading States
+export interface LoadingState {
+  isLoading: boolean;
+  error?: string | null;
+  data?: any;
+}
+
+export interface SkeletonProps {
+  width?: string | number;
+  height?: string | number;
+  className?: string;
+  variant?: 'text' | 'rectangular' | 'circular';
+}
+
+// Form Types
+export interface FormFieldProps {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'textarea' | 'select';
+  placeholder?: string;
+  required?: boolean;
+  options?: string[];
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}
+
+export interface FormValidationRules {
+  required?: boolean;
+  minLength?: number;
+  maxLength?: number;
+  pattern?: RegExp;
+  email?: boolean;
+}
+
+// API Response Types
+export interface ApiResponse<T = any> {
+  success: boolean;
+  data?: T;
+  error?: string;
+  message?: string;
+}
+
+// Theme Types
+export interface Theme {
+  colors: {
+    primary: string;
+    secondary: string;
+    background: string;
+    surface: string;
+    text: string;
+    error: string;
+    success: string;
+    warning: string;
+  };
+  spacing: {
+    xs: string;
+    sm: string;
+    md: string;
+    lg: string;
+    xl: string;
+  };
+  breakpoints: {
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+}
+
+// Utility Types
+export type Maybe<T> = T | null | undefined;
+export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+export type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>;

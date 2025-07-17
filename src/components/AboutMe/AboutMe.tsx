@@ -3,6 +3,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
+import { useSimulatedLoading } from "@/hooks/useLoadingState";
+import { Skills } from "./Skills";
+import { Achievements } from "./Achievements";
 
 interface Skill {
   name: string;
@@ -56,6 +59,8 @@ const achievements: Achievement[] = [
 ];
 
 export default function AboutMe() {
+  const { isLoading } = useSimulatedLoading(1000, true);
+  
   const {
     sectionVariants,
     titleVariants,
@@ -204,71 +209,20 @@ export default function AboutMe() {
         </div>
 
         {/* Achievements */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
-          variants={sectionVariants}
-        >
-          {achievements.map((achievement, index) => (
-            <motion.div
-              key={index}
-              className="text-center p-6 bg-dark rounded-lg shadow-lg"
-              variants={cardVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
-            >
-              <Icon
-                icon={achievement.icon}
-                className="text-4xl text-primary mb-3 mx-auto"
-              />
-              <h4 className="text-2xl font-bold text-light mb-2">
-                {achievement.number}
-              </h4>
-              <p className="text-secondary text-sm">{achievement.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+        <Achievements
+          achievements={achievements}
+          isLoading={isLoading}
+          sectionVariants={sectionVariants}
+          cardVariants={cardVariants}
+        />
 
         {/* Skills Section */}
-        <motion.div variants={cardVariants}>
-          <motion.h3
-            className="text-2xl md:text-3xl font-bold text-dark text-center mb-12"
-            variants={titleVariants}
-          >
-            Skills & Technologies
-          </motion.h3>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                className="bg-dark p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                variants={cardVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <Icon icon={skill.icon} className="text-3xl" />
-                  <div>
-                    <h4 className="text-light font-semibold">{skill.name}</h4>
-                    <p className="text-secondary text-xs">{skill.category}</p>
-                  </div>
-                </div>
-
-                {/* Skill Progress Bar */}
-                <div className="w-full bg-secondary bg-opacity-20 rounded-full h-2 mb-2">
-                  <motion.div
-                    className="bg-primary h-2 rounded-full"
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  />
-                </div>
-                <p className="text-secondary text-xs text-right">
-                  {skill.level}%
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <Skills
+          skills={skills}
+          isLoading={isLoading}
+          titleVariants={titleVariants}
+          cardVariants={cardVariants}
+        />
       </div>
     </motion.section>
   );

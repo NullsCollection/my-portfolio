@@ -1,24 +1,39 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
+import { scrollToSection, getCurrentSection, throttle } from "@/lib/scrollUtils";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("home");
+
+  const sectionIds = ["home", "services", "projects", "about", "contact", "faqs"];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const handleNavClick = (sectionId: string) => {
+    setIsMenuOpen(false);
+    scrollToSection(sectionId, { offset: 80 }); // Offset for fixed navbar
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
-    };
+      
+      // Update active section
+      const currentSection = getCurrentSection(sectionIds, 100);
+      if (currentSection && currentSection !== activeSection) {
+        setActiveSection(currentSection);
+      }
+    }, 100);
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeSection]);
 
   return (
     <nav
@@ -30,12 +45,12 @@ export default function NavBar() {
         <div className="flex items-center justify-between">
           {/* Left Section - Mobile/Small Tablet Brand */}
           <div className="md:hidden flex items-center">
-            <a
-              href="#home"
+            <button
+              onClick={() => handleNavClick("home")}
               className="font-bold text-xl sm:text-2xl text-primary transition-colors duration-300"
             >
               NuLLzCollection
-            </a>
+            </button>
           </div>
 
           {/* Left Section - Desktop Social Icons */}
@@ -68,48 +83,60 @@ export default function NavBar() {
 
           {/* Desktop/Tablet Navigation */}
           <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
-            <a
-              href="#home"
-              className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
+            <button
+              onClick={() => handleNavClick("home")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "home" ? "text-primary" : "text-light"
+              }`}
             >
               Home
-            </a>
-            <a
-              href="#services"
-              className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
+            </button>
+            <button
+              onClick={() => handleNavClick("services")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "services" ? "text-primary" : "text-light"
+              }`}
             >
-              Service
-            </a>
-            <a
-              href="#projects"
-              className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
+              Services
+            </button>
+            <button
+              onClick={() => handleNavClick("projects")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "projects" ? "text-primary" : "text-light"
+              }`}
             >
               Projects
-            </a>
-            <a
-              href="#home"
+            </button>
+            <button
+              onClick={() => handleNavClick("home")}
               className="font-bold text-2xl text-primary transform hover:scale-105 transition-all duration-300"
             >
               NuLLzCollection
-            </a>
-            <a
-              href="#about"
-              className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
+            </button>
+            <button
+              onClick={() => handleNavClick("about")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "about" ? "text-primary" : "text-light"
+              }`}
             >
               About
-            </a>
-            <a
-              href="#contact"
-              className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
+            </button>
+            <button
+              onClick={() => handleNavClick("contact")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "contact" ? "text-primary" : "text-light"
+              }`}
             >
               Contacts
-            </a>
-            <a
-              href="#faqs"
-              className="font-light text-light hover:text-primary transform hover:scale-105 transition-all duration-300"
+            </button>
+            <button
+              onClick={() => handleNavClick("faqs")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "faqs" ? "text-primary" : "text-light"
+              }`}
             >
               Faqs
-            </a>
+            </button>
           </div>
 
           {/* Right Section */}
@@ -152,72 +179,66 @@ export default function NavBar() {
           }`}
         >
           <div className="pt-4 pb-2 space-y-2 sm:space-y-3">
-            <a
-              href="#home"
-              className={`block text-light hover:text-primary transition-all duration-300 py-2 transform ${
+            <button
+              onClick={() => handleNavClick("home")}
+              className={`block w-full text-left hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-100"
                   : "opacity-0 -translate-x-4"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              } ${activeSection === "home" ? "text-primary" : "text-light"}`}
             >
               Home
-            </a>
-            <a
-              href="#services"
-              className={`block font-light text-light hover:text-primary transition-all duration-300 py-2 transform ${
+            </button>
+            <button
+              onClick={() => handleNavClick("services")}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-150"
                   : "opacity-0 -translate-x-4"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              } ${activeSection === "services" ? "text-primary" : "text-light"}`}
             >
-              Service
-            </a>
-            <a
-              href="#projects"
-              className={`block font-light text-light hover:text-primary transition-all duration-300 py-2 transform ${
+              Services
+            </button>
+            <button
+              onClick={() => handleNavClick("projects")}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-200"
                   : "opacity-0 -translate-x-4"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              } ${activeSection === "projects" ? "text-primary" : "text-light"}`}
             >
               Projects
-            </a>
-            <a
-              href="#about"
-              className={`block font-light text-light hover:text-primary transition-all duration-300 py-2 transform ${
+            </button>
+            <button
+              onClick={() => handleNavClick("about")}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-300"
                   : "opacity-0 -translate-x-4"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              } ${activeSection === "about" ? "text-primary" : "text-light"}`}
             >
               About
-            </a>
-            <a
-              href="#contact"
-              className={`block font-light text-light hover:text-primary transition-all duration-300 py-2 transform ${
+            </button>
+            <button
+              onClick={() => handleNavClick("contact")}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-350"
                   : "opacity-0 -translate-x-4"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              } ${activeSection === "contact" ? "text-primary" : "text-light"}`}
             >
               Contact
-            </a>
-            <a
-              href="#faqs"
-              className={`block font-light text-light hover:text-primary transition-all duration-300 py-2 transform ${
+            </button>
+            <button
+              onClick={() => handleNavClick("faqs")}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-400"
                   : "opacity-0 -translate-x-4"
-              }`}
-              onClick={() => setIsMenuOpen(false)}
+              } ${activeSection === "faqs" ? "text-primary" : "text-light"}`}
             >
               Faqs
-            </a>
+            </button>
 
             {/* Mobile/Tablet Social Icons */}
             <div
