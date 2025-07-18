@@ -1,7 +1,7 @@
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { Project as ProjectType, ProjectFilter } from "@/types";
 
-export interface Project extends Omit<ProjectType, 'id'> {
+export interface Project extends Omit<ProjectType, "id"> {
   id: number;
 }
 

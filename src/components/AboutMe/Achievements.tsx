@@ -3,15 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { AchievementCard } from "./AchievementCard";
 import { AchievementCardSkeleton } from "@/components/ui/SkeletonCard";
-
-interface Achievement {
-  number: string;
-  label: string;
-  icon: string;
-}
+import { AnimatedAchievement } from "@/types";
 
 interface AchievementsProps {
-  achievements: Achievement[];
+  achievements: AnimatedAchievement[];
   isLoading: boolean;
   sectionVariants?: any;
   cardVariants?: any;

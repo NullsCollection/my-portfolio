@@ -3,41 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
-import { BorderBeam } from "@/components/magicui/border-beam";
-
-interface ContactMethod {
-  icon: string;
-  title: string;
-  description: string;
-  action: () => void;
-}
-
-const contactMethods: ContactMethod[] = [
-  {
-    icon: "mdi:email",
-    title: "Email",
-    description: "raffy7792@gmail.com",
-    action: () => window.open("mailto:raffy7792@gmail.com", "_blank"),
-  },
-  {
-    icon: "mdi:linkedin",
-    title: "LinkedIn",
-    description: "Connect with me",
-    action: () => window.open("https://linkedin.com/in/yourprofile", "_blank"),
-  },
-  {
-    icon: "mdi:github",
-    title: "GitHub",
-    description: "Check out my code",
-    action: () => window.open("https://github.com/yourusername", "_blank"),
-  },
-  {
-    icon: "mdi:phone",
-    title: "Phone",
-    description: "Available on request",
-    action: () => window.open("mailto:raffy7792@gmail.com?subject=Phone Number Request", "_blank"),
-  },
-];
+import { contactMethods } from "@/hooks/MockData/Projects/useContact";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -57,15 +23,17 @@ export default function Contact() {
     viewportOptions,
   } = useExitAnimation({ exitDuration: 0.5, threshold: 0.1, playOnce: false });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     setTimeout(() => {
       alert("Thank you for your message! I'll get back to you soon.");
@@ -77,7 +45,7 @@ export default function Contact() {
   return (
     <motion.section
       id="contact"
-      className="py-20 px-6 bg-dark"
+      className="py-20 px-6 bg-images fade-image-bg"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
@@ -97,44 +65,49 @@ export default function Contact() {
             className="text-lg text-secondary max-w-2xl mx-auto"
             variants={descriptionVariants}
           >
-            Have a project in mind? Let's work together to bring your ideas to life
+            Have a project in mind? Let's work together to bring your ideas to
+            life
           </motion.p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div variants={cardVariants}>
-            <h3 className="text-2xl font-bold text-light mb-8">
-              Let's Connect
+            <h3 className="text-8xl text-primary md:text-7xl lg:text-8xl font-bold mb-4">
+              Let's
+              <span className="block mt-2 text-light">Connect</span>
             </h3>
-            
-            <div className="space-y-6 mb-8">
+
+            {/* Contact Info */}
+            <div className="mb-6 space-y-2">
+              <p className="text-secondary text-sm">
+                Telegram: +63 960 072 3886
+              </p>
+              <p className="text-secondary text-sm">
+                Email:{" "}
+                <a
+                  href="mailto:raffy7792@gmail.com"
+                  className="text-primary hover:underline"
+                >
+                  raffy7792@gmail.com
+                </a>
+              </p>
+            </div>
+
+            <h4 className="text-light font-semibold mb-4">Social :</h4>
+
+            {/* Social Media Icons */}
+            <div className="flex flex-wrap justify-start mb-6 gap-3">
               {contactMethods.map((method, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-4 p-4 bg-light-bg-color rounded-lg cursor-pointer hover:bg-opacity-80 transition-all duration-300 relative overflow-hidden"
+                  className="bg-blue p-2 rounded-full cursor-pointer hover:bg-opacity-90 transition-all duration-300"
                   variants={cardVariants}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={method.action}
-                  onHoverStart={() => setHoveredCard(index)}
-                  onHoverEnd={() => setHoveredCard(null)}
                 >
-                  {hoveredCard === index && (
-                    <BorderBeam
-                      size={60}
-                      duration={3}
-                      colorFrom="#ffaa40"
-                      colorTo="#9c40ff"
-                      delay={0}
-                    />
-                  )}
-                  <div className="bg-primary p-3 rounded-full relative z-10">
-                    <Icon icon={method.icon} className="text-2xl text-dark" />
-                  </div>
-                  <div className="relative z-10">
-                    <h4 className="text-light font-semibold">{method.title}</h4>
-                    <p className="text-secondary text-sm">{method.description}</p>
-                  </div>
+                  <Icon icon={method.icon} className="text-2xl text-dark" />
                 </motion.div>
               ))}
             </div>
@@ -149,8 +122,8 @@ export default function Contact() {
                 Response Time
               </h4>
               <p className="text-secondary text-sm">
-                I typically respond to emails within 24 hours. For urgent matters, 
-                please include "URGENT" in your subject line.
+                I typically respond to emails within 24 hours. For urgent
+                matters, please include "URGENT" in your subject line.
               </p>
             </motion.div>
           </motion.div>
@@ -160,7 +133,7 @@ export default function Contact() {
             <h3 className="text-2xl font-bold text-light mb-8">
               Send a Message
             </h3>
-            
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -173,11 +146,11 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light placeholder-secondary focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
                     placeholder="Your full name"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-light font-medium mb-2">
                     Email *
@@ -188,7 +161,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light placeholder-secondary focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -204,7 +177,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light placeholder-secondary focus:outline-none focus:border-primary transition-colors"
+                  className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
                   placeholder="What's this about?"
                 />
               </div>
@@ -219,7 +192,7 @@ export default function Contact() {
                   onChange={handleInputChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light placeholder-secondary focus:outline-none focus:border-primary transition-colors resize-none"
+                  className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors resize-none"
                   placeholder="Tell me about your project..."
                 />
               </div>

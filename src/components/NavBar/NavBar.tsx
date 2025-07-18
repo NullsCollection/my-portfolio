@@ -1,14 +1,25 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { scrollToSection, getCurrentSection, throttle } from "@/lib/scrollUtils";
+import {
+  scrollToSection,
+  getCurrentSection,
+  throttle,
+} from "@/lib/scrollUtils";
 
 export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("home");
 
-  const sectionIds = ["home", "services", "projects", "about", "contact", "faqs"];
+  const sectionIds = [
+    "home",
+    "services",
+    "projects",
+    "about",
+    "contact",
+    "faq",
+  ];
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -23,7 +34,7 @@ export default function NavBar() {
     const handleScroll = throttle(() => {
       const scrollTop = window.scrollY;
       setIsScrolled(scrollTop > 50);
-      
+
       // Update active section
       const currentSection = getCurrentSection(sectionIds, 100);
       if (currentSection && currentSection !== activeSection) {
@@ -122,20 +133,20 @@ export default function NavBar() {
               About
             </button>
             <button
+              onClick={() => handleNavClick("faq")}
+              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                activeSection === "faq" ? "text-primary" : "text-light"
+              }`}
+            >
+              FAQ
+            </button>
+            <button
               onClick={() => handleNavClick("contact")}
               className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
                 activeSection === "contact" ? "text-primary" : "text-light"
               }`}
             >
               Contacts
-            </button>
-            <button
-              onClick={() => handleNavClick("faqs")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "faqs" ? "text-primary" : "text-light"
-              }`}
-            >
-              Faqs
             </button>
           </div>
 
@@ -195,7 +206,9 @@ export default function NavBar() {
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-150"
                   : "opacity-0 -translate-x-4"
-              } ${activeSection === "services" ? "text-primary" : "text-light"}`}
+              } ${
+                activeSection === "services" ? "text-primary" : "text-light"
+              }`}
             >
               Services
             </button>
@@ -205,7 +218,9 @@ export default function NavBar() {
                 isMenuOpen
                   ? "opacity-100 translate-x-0 delay-200"
                   : "opacity-0 -translate-x-4"
-              } ${activeSection === "projects" ? "text-primary" : "text-light"}`}
+              } ${
+                activeSection === "projects" ? "text-primary" : "text-light"
+              }`}
             >
               Projects
             </button>
@@ -220,6 +235,16 @@ export default function NavBar() {
               About
             </button>
             <button
+              onClick={() => handleNavClick("faq")}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
+                isMenuOpen
+                  ? "opacity-100 translate-x-0 delay-400"
+                  : "opacity-0 -translate-x-4"
+              } ${activeSection === "faq" ? "text-primary" : "text-light"}`}
+            >
+              FAQ
+            </button>
+            <button
               onClick={() => handleNavClick("contact")}
               className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
                 isMenuOpen
@@ -228,16 +253,6 @@ export default function NavBar() {
               } ${activeSection === "contact" ? "text-primary" : "text-light"}`}
             >
               Contact
-            </button>
-            <button
-              onClick={() => handleNavClick("faqs")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-400"
-                  : "opacity-0 -translate-x-4"
-              } ${activeSection === "faqs" ? "text-primary" : "text-light"}`}
-            >
-              Faqs
             </button>
 
             {/* Mobile/Tablet Social Icons */}

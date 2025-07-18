@@ -2,78 +2,35 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
-import { useSimulatedLoading } from "@/hooks/useLoadingState";
+import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
+import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { Skills } from "./Skills";
 import { Achievements } from "./Achievements";
-
-interface Skill {
-  name: string;
-  level: number;
-  icon: string;
-  category: string;
-}
-
-interface Achievement {
-  number: string;
-  label: string;
-  icon: string;
-}
-
-const skills: Skill[] = [
-  { name: "React", level: 95, icon: "logos:react", category: "Frontend" },
-  {
-    name: "TypeScript",
-    level: 90,
-    icon: "logos:typescript-icon",
-    category: "Frontend",
-  },
-  {
-    name: "Next.js",
-    level: 88,
-    icon: "logos:nextjs-icon",
-    category: "Frontend",
-  },
-  {
-    name: "Node.js",
-    level: 85,
-    icon: "logos:nodejs-icon",
-    category: "Backend",
-  },
-  { name: "Python", level: 80, icon: "logos:python", category: "Backend" },
-  { name: "Figma", level: 92, icon: "logos:figma", category: "Design" },
-  { name: "Adobe XD", level: 88, icon: "logos:adobe-xd", category: "Design" },
-  {
-    name: "Illustrator",
-    level: 85,
-    icon: "logos:adobe-illustrator",
-    category: "Design",
-  },
-];
-
-const achievements: Achievement[] = [
-  { number: "50+", label: "Projects Completed", icon: "mdi:rocket-launch" },
-  { number: "3+", label: "Years Experience", icon: "mdi:calendar-clock" },
-  { number: "25+", label: "Happy Clients", icon: "mdi:account-heart" },
-  { number: "100%", label: "Client Satisfaction", icon: "mdi:star" },
-];
+import { skills, achievements } from "@/hooks/MockData/Projects/useAboutMe";
 
 export default function AboutMe() {
   const { isLoading } = useSimulatedLoading(1000, true);
-  
+
   const {
     sectionVariants,
     titleVariants,
     descriptionVariants,
     cardVariants,
     viewportOptions,
-  } = useExitAnimation({ exitDuration: 0.5, threshold: 0.1, playOnce: false });
+  } = useScrollAnimation({
+    exitDuration: 0.5,
+    threshold: 0.1,
+    playOnce: false,
+    enableExit: true,
+    direction: "up",
+    animationType: "fade",
+  });
 
   return (
     <motion.section
       id="about"
-      className="bg-images py-20 px-6 bg-light"
-      //variants={sectionVariants}
+      className="bg-images fade-image-bg py-20 px-6 bg-light"
+      variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       exit="exit"
@@ -111,10 +68,11 @@ export default function AboutMe() {
                 className="text-secondary leading-relaxed"
                 variants={descriptionVariants}
               >
-                I'm a passionate full-stack developer and UI/UX designer with
-                over 3 years of experience creating digital solutions that
+                I'm a passionate multi-role developer and graphic designer with
+                over 4 years of experience creating digital solutions that
                 combine beautiful design with robust functionality. I specialize
-                in modern web technologies and have a keen eye for detail.
+                in frontend development, modern web technologies, and 3D vector
+                illustration with a keen eye for detail.
               </motion.p>
 
               <motion.p
@@ -178,19 +136,16 @@ export default function AboutMe() {
             {/* Profile Image Placeholder */}
             <div className="relative mx-auto w-80 h-80 mb-8">
               <motion.div
-                className="w-full h-full bg-gradient-to-br from-primary to-primary-light rounded-2xl flex items-center justify-center shadow-2xl"
+                className="aboutMe-image w-full h-full rounded-2xl shadow-2xl"
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ duration: 0.3 }}
               >
-                <Icon
-                  icon="mdi:account"
-                  className="text-8xl text-dark opacity-50"
-                />
+                {/* Profile image is now displayed via CSS background-image */}
               </motion.div>
 
               {/* Floating Elements */}
               <motion.div
-                className="absolute -top-4 -right-4 bg-dark text-light p-3 rounded-full shadow-lg"
+                className="absolute -top-4 -right-4 bg-blue text-light p-3 rounded-full shadow-lg"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >

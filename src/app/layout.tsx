@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "../assets/styles/globals.css";
 import "../assets/styles/style.css";
 import "../assets/styles/base.css";
@@ -10,7 +10,6 @@ export const metadata: Metadata = {
   keywords:
     "web developer, graphic designer, portfolio, freelance, full-time, modern technologies, Next.js, TypeScript, React",
   authors: [{ name: "Raffy Francisco" }],
-  viewport: "width=device-width, initial-scale=1",
   robots: "index, follow",
   openGraph: {
     title: "Raffy Francisco - Portfolio",
@@ -25,6 +24,11 @@ export const metadata: Metadata = {
     description:
       "Professional Web Developer and Graphic Designer specializing in modern technologies",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

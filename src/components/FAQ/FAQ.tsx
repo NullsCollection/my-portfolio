@@ -2,68 +2,10 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
-import { BorderBeam } from "@/components/magicui/border-beam";
+import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
+import { faqData } from "@/hooks/MockData/Projects/useFaqs";
 
-interface FAQItem {
-  id: number;
-  question: string;
-  answer: string;
-  category: string;
-}
-
-const faqData: FAQItem[] = [
-  {
-    id: 1,
-    question: "What technologies do you specialize in?",
-    answer: "I specialize in React, Next.js, TypeScript, Node.js, and modern web technologies. I'm also proficient in UI/UX design tools like Figma and Adobe Creative Suite.",
-    category: "Technical"
-  },
-  {
-    id: 2,
-    question: "How long does a typical project take?",
-    answer: "Project timelines vary depending on complexity. A simple landing page might take 1-2 weeks, while a full-stack application could take 2-3 months. I provide detailed timelines after understanding your requirements.",
-    category: "Process"
-  },
-  {
-    id: 3,
-    question: "Do you work with international clients?",
-    answer: "Yes! I work with clients worldwide. I'm comfortable with remote collaboration and can adapt to different time zones for meetings and communication.",
-    category: "General"
-  },
-  {
-    id: 4,
-    question: "What's your development process like?",
-    answer: "I follow an agile approach with regular check-ins, prototyping, iterative development, and thorough testing. You'll be involved throughout the process with regular updates and feedback sessions.",
-    category: "Process"
-  },
-  {
-    id: 5,
-    question: "Do you provide ongoing support after project completion?",
-    answer: "Yes, I offer maintenance and support packages. This includes bug fixes, updates, and minor enhancements to keep your project running smoothly.",
-    category: "Support"
-  },
-  {
-    id: 6,
-    question: "What's your pricing structure?",
-    answer: "I offer both project-based and hourly pricing depending on the scope. After discussing your requirements, I'll provide a detailed quote with transparent pricing and no hidden fees.",
-    category: "Pricing"
-  },
-  {
-    id: 7,
-    question: "Can you help with both design and development?",
-    answer: "Absolutely! I'm a full-stack developer with strong design skills. I can handle everything from UI/UX design to front-end and back-end development.",
-    category: "Technical"
-  },
-  {
-    id: 8,
-    question: "Do you work on mobile applications?",
-    answer: "Yes, I develop responsive web applications that work perfectly on mobile devices. I also have experience with React Native for native mobile app development.",
-    category: "Technical"
-  }
-];
-
-const categories = ["All", "Technical", "Process", "General", "Support", "Pricing"];
+const categories = ["All", "Technical", "Process", "General", "Pricing"];
 
 export default function FAQ() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -76,20 +18,28 @@ export default function FAQ() {
     descriptionVariants,
     cardVariants,
     viewportOptions,
-  } = useExitAnimation({ exitDuration: 0.5, threshold: 0.1, playOnce: false });
+  } = useScrollAnimation({
+    animationType: "fade",
+    direction: "up",
+    enableExit: true,
+    exitDuration: 0.5,
+    threshold: 0.1,
+    playOnce: false,
+  });
 
   const toggleFAQ = (id: number) => {
     setOpenFAQ(openFAQ === id ? null : id);
   };
 
-  const filteredFAQs = selectedCategory === "All" 
-    ? faqData 
-    : faqData.filter(faq => faq.category === selectedCategory);
+  const filteredFAQs =
+    selectedCategory === "All"
+      ? faqData
+      : faqData.filter((faq) => faq.category === selectedCategory);
 
   return (
     <motion.section
       id="faq"
-      className="py-20 px-6 bg-light"
+      className="py-20 px-6"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
@@ -109,7 +59,8 @@ export default function FAQ() {
             className="text-lg text-secondary max-w-2xl mx-auto"
             variants={descriptionVariants}
           >
-            Find answers to common questions about my services, process, and approach
+            Find answers to common questions about my services, process, and
+            approach
           </motion.p>
         </div>
 
@@ -125,7 +76,7 @@ export default function FAQ() {
               className={`px-6 py-2 rounded-full font-medium transition-all duration-300 ${
                 selectedCategory === category
                   ? "bg-primary text-dark"
-                  : "bg-dark text-light hover:bg-primary hover:text-dark"
+                  : "bg-light text-light hover:bg-primary hover:text-dark"
               }`}
             >
               {category}
@@ -135,11 +86,11 @@ export default function FAQ() {
 
         {/* FAQ Items */}
         <motion.div className="space-y-4" variants={cardVariants}>
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filteredFAQs.map((faq, index) => (
               <motion.div
                 key={faq.id}
-                className="bg-dark rounded-lg overflow-hidden relative"
+                className="bg-light rounded-lg overflow-hidden relative"
                 variants={cardVariants}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -148,16 +99,6 @@ export default function FAQ() {
                 onHoverStart={() => setHoveredCard(faq.id)}
                 onHoverEnd={() => setHoveredCard(null)}
               >
-                {hoveredCard === faq.id && (
-                  <BorderBeam
-                    size={80}
-                    duration={3}
-                    colorFrom="#3b82f6"
-                    colorTo="#8b5cf6"
-                    delay={0}
-                  />
-                )}
-                
                 <button
                   onClick={() => toggleFAQ(faq.id)}
                   className="w-full p-6 text-left flex items-center justify-between hover:bg-light-bg-color transition-colors duration-300 relative z-10"
@@ -209,10 +150,7 @@ export default function FAQ() {
         </motion.div>
 
         {/* Still Have Questions CTA */}
-        <motion.div
-          className="text-center mt-16"
-          variants={cardVariants}
-        >
+        <motion.div className="text-center mt-16" variants={cardVariants}>
           <div className="bg-dark p-8 rounded-lg">
             <h3 className="text-2xl font-bold text-light mb-4">
               Still Have Questions?
@@ -225,8 +163,8 @@ export default function FAQ() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => {
-                const contactSection = document.getElementById('contact');
-                contactSection?.scrollIntoView({ behavior: 'smooth' });
+                const contactSection = document.getElementById("contact");
+                contactSection?.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Get In Touch

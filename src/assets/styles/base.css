@@ -39,6 +39,43 @@
   background-repeat: no-repeat;
 }
 
+/* Fade Image Background Effect */
+.fade-image-bg img {
+  display: block;
+  width: 100%;
+  height: auto;
+  mask-image: radial-gradient(circle at center, #131626 65%, transparent 100%);
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    #131626 65%,
+    transparent 100%
+  );
+}
+
+/* Fade effect for background images */
+.fade-image-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 45%,
+    #131626 75%,
+    #131626 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ensure content is above the fade overlay */
+.fade-image-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* Project Images */
 .project-image-1 {
   background-image: url("../common/Game.png");
@@ -93,6 +130,13 @@
   background-repeat: no-repeat;
 }
 
+/* Profile image */
+.aboutMe-image {
+  background-image: url("../common/1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

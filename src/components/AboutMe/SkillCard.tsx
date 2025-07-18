@@ -64,7 +64,7 @@ export const SkillCard: React.FC<SkillCardProps> = ({
           initial={{ width: 0 }}
           whileInView={{ width: `${skill.level}%` }}
           transition={{ duration: 1, delay: index * 0.1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
         />
       </div>
       <p className="text-secondary text-xs text-right relative z-10">

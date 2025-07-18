@@ -54,7 +54,21 @@ export interface Skill {
   category: SkillCategory;
 }
 
-export type SkillCategory = 'Frontend' | 'Backend' | 'Design' | 'DevOps' | 'Mobile' | 'Database';
+// Legacy type alias for backward compatibility
+export interface SkillCard {
+  name: string;
+  level: number;
+  icon: string;
+  category: string;
+}
+
+export type SkillCategory =
+  | "Frontend"
+  | "Backend"
+  | "Design"
+  | "DevOps"
+  | "Mobile"
+  | "Database";
 
 // Achievement Types
 export interface Achievement {
@@ -63,6 +77,20 @@ export interface Achievement {
   label: string;
   icon: string;
   description?: string;
+}
+
+// Legacy type alias for backward compatibility
+export interface AchievementCard {
+  number: string;
+  label: string;
+  icon: string;
+}
+
+// Enhanced achievement type with animation data
+export interface AnimatedAchievement extends AchievementCard {
+  value: number;
+  suffix?: string;
+  prefix?: string;
 }
 
 // Contact Types
@@ -79,6 +107,19 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
+}
+//FAQ Types
+export interface FAQItem {
+  id: number;
+  question: string;
+  answer: string;
+  category: string;
+}
+
+//Contact types
+export interface ContactMethod {
+  icon: string;
+  action: () => void;
 }
 
 // Social Media Types
@@ -100,6 +141,13 @@ export interface AnimationOptions {
 
 export interface ScrollRevealOptions extends AnimationOptions {
   exitDuration?: number;
+}
+
+export interface ScrollAnimationOptions extends ScrollRevealOptions {
+  enableExit?: boolean;
+  staggerDelay?: number;
+  animationType?: "fade" | "slide" | "scale";
+  direction?: "up" | "down" | "left" | "right";
 }
 
 // Component Props Types
@@ -125,14 +173,14 @@ export interface SkeletonProps {
   width?: string | number;
   height?: string | number;
   className?: string;
-  variant?: 'text' | 'rectangular' | 'circular';
+  variant?: "text" | "rectangular" | "circular";
 }
 
 // Form Types
 export interface FormFieldProps {
   name: string;
   label: string;
-  type?: 'text' | 'email' | 'textarea' | 'select';
+  type?: "text" | "email" | "textarea" | "select";
   placeholder?: string;
   required?: boolean;
   options?: string[];
