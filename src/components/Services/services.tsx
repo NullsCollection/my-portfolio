@@ -42,7 +42,8 @@ export default function Services() {
     {
       icon: "mdi:mobile-phone",
       title: "Mobile Apps",
-      description: "Cross-platform mobile applications for iOS and Android",
+      description:
+        "Creating beautiful mobile app interfaces and seamless user experiences.",
     },
     {
       icon: "mdi:search-web",

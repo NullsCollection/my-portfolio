@@ -1,12 +1,13 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import { useProjectData } from "@/hooks/MockData/Projects/useProjectData";
-import { useScrollReveal } from "@/hooks/ScrollAnimation/useScrollReaveal";
-import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
+import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { ProjectCardSkeleton } from "@/components/ui/SkeletonCard";
+import FullScreenModal from "@/components/Modal/ProjectModal/FullScreenModal";
+import { Project } from "@/types";
 
 export default function Projects() {
   const { projects, filterOptions, activeFilter, setActiveFilter } =
@@ -14,21 +15,44 @@ export default function Projects() {
 
   const { isLoading } = useSimulatedLoading(1200, true);
 
+  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const openModal = (project: any) => {
+    // Convert mock data project to main Project type
+    const convertedProject: Project = {
+      ...project,
+      id: project.id.toString(), // Convert number id to string
+    };
+    setSelectedProject(convertedProject);
+    setIsModalOpen(true);
+  };
+
+  const handleNavigateProject = (project: Project) => {
+    setSelectedProject(project);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   const {
     sectionVariants,
     titleVariants,
     descriptionVariants,
     cardVariants,
     viewportOptions,
-  } = useScrollReveal({ duration: 0.8, threshold: 0.1 });
-
-  const {
-    sectionVariants: exitSectionVariants,
-    titleVariants: exitTitleVariants,
-    descriptionVariants: exitDescriptionVariants,
-    cardVariants: exitCardVariants,
-    viewportOptions: exitViewportOptions,
-  } = useExitAnimation({ exitDuration: 0.5, threshold: 0.1, playOnce: false });
+  } = useScrollAnimation({
+    duration: 0.8,
+    threshold: 0.1,
+    enableExit: true,
+    exitDuration: 0.5,
+    playOnce: false,
+    animationType: "fade",
+    direction: "up",
+  });
 
   const filteredProjects = useMemo(() => {
     return activeFilter === "all"
@@ -36,28 +60,34 @@ export default function Projects() {
       : projects.filter((project) => project.category === activeFilter);
   }, [projects, activeFilter]);
 
+  // Convert all projects for modal navigation
+  const convertedProjects: Project[] = filteredProjects.map((project) => ({
+    ...project,
+    id: project.id.toString(),
+  }));
+
   return (
     <motion.section
       id="projects"
       className="py-20 px-6 bg-dark"
-      variants={exitSectionVariants}
+      variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       exit="exit"
-      viewport={exitViewportOptions}
+      viewport={viewportOptions}
     >
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-16">
           <motion.h2
             className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-light"
-            variants={exitTitleVariants}
+            variants={titleVariants}
           >
             My Projects
           </motion.h2>
           <motion.p
             className="text-lg text-secondary max-w-2xl mx-auto"
-            variants={exitDescriptionVariants}
+            variants={descriptionVariants}
           >
             Explore my recent work and creative solutions
           </motion.p>
@@ -66,11 +96,11 @@ export default function Projects() {
         {/* Filter Buttons */}
         <motion.div
           className="flex flex-wrap justify-center gap-4 mb-12"
-          variants={exitSectionVariants}
+          variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           exit="exit"
-          viewport={exitViewportOptions}
+          viewport={viewportOptions}
         >
           {filterOptions.map((option) => (
             <motion.button
@@ -81,7 +111,7 @@ export default function Projects() {
                   ? "bg-primary text-dark font-medium"
                   : "border border-secondary text-secondary hover:border-primary hover:text-primary"
               }`}
-              variants={exitCardVariants}
+              variants={cardVariants}
               whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
               whileTap={{ scale: 0.95 }}
             >
@@ -94,7 +124,7 @@ export default function Projects() {
         <motion.div
           key={activeFilter} // Force re-animation when filter changes
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={exitSectionVariants}
+          variants={sectionVariants}
           initial="hidden"
           animate="visible"
         >
@@ -106,9 +136,14 @@ export default function Projects() {
             : filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105"
-                  variants={exitCardVariants}
+                  className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
+                  variants={cardVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  exit="exit"
+                  viewport={viewportOptions}
                   whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
+                  onClick={() => openModal(project)}
                 >
                   <div className="relative">
                     {/* Project Image */}
@@ -150,13 +185,16 @@ export default function Projects() {
                       {project.description}
                     </p>
 
-                    <a
-                      href={project.link}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal(project);
+                      }}
                       className="inline-flex items-center text-primary hover:text-primary-light transition-colors duration-300"
                     >
                       View Project
                       <Icon icon="mdi:arrow-right" className="ml-1" />
-                    </a>
+                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -165,17 +203,26 @@ export default function Projects() {
         {/* View All Projects Button */}
         <motion.div
           className="text-center mt-12"
-          variants={exitDescriptionVariants}
+          variants={descriptionVariants}
+          initial="hidden"
+          whileInView="visible"
+          exit="exit"
+          viewport={viewportOptions}
         >
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg"
-          >
+          <button className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg">
             View All Projects
             <Icon icon="mdi:arrow-right" className="text-xl" />
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      {/* Enhanced Project Modal */}
+      <FullScreenModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        project={selectedProject}
+        projects={convertedProjects}
+      />
     </motion.section>
   );
 }

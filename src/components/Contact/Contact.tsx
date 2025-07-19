@@ -130,93 +130,95 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div variants={cardVariants}>
-            <h3 className="text-2xl font-bold text-light mb-8">
-              Send a Message
-            </h3>
+            <div className="backdrop-blur-md bg-white/2 border border-white/10 rounded-2xl p-8 shadow-2xl">
+              <h3 className="text-2xl font-bold text-light mb-8">
+                Send a Message
+              </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-light font-medium mb-2">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
+                      placeholder="Your full name"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-light font-medium mb-2">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-light font-medium mb-2">
-                    Name *
+                    Subject *
                   </label>
                   <input
                     type="text"
-                    name="name"
-                    value={formData.name}
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
-                    placeholder="Your full name"
+                    placeholder="What's this about?"
                   />
                 </div>
 
                 <div>
                   <label className="block text-light font-medium mb-2">
-                    Email *
+                    Message *
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
+                  <textarea
+                    name="message"
+                    value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
-                    placeholder="your.email@example.com"
+                    rows={6}
+                    className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors resize-none"
+                    placeholder="Tell me about your project..."
                   />
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-light font-medium mb-2">
-                  Subject *
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
-                  placeholder="What's this about?"
-                />
-              </div>
-
-              <div>
-                <label className="block text-light font-medium mb-2">
-                  Message *
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-primary text-dark font-medium py-4 px-8 rounded-lg hover:opacity-90 disabled:opacity-50 transition-all duration-300 flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Icon icon="mdi:loading" className="animate-spin" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send Message
-                    <Icon icon="mdi:send" />
-                  </>
-                )}
-              </motion.button>
-            </form>
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary text-dark font-medium py-4 px-8 rounded-lg hover:opacity-90 disabled:opacity-50 transition-all duration-300 flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Icon icon="mdi:loading" className="animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <Icon icon="mdi:send" />
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            </div>
           </motion.div>
         </div>
       </div>

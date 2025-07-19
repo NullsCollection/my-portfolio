@@ -12,7 +12,7 @@ export const faqData: FAQItem[] = [
     id: 2,
     question: "How long does a typical project take?",
     answer:
-      "Project timelines vary depending on complexity. As a frontend-focused developer, a simple landing page might take 1-2 weeks, while a full-stack application could take around 2-3 months. I provide detailed timelines after understanding your requirements.",
+      "Project timelines vary depending on complexity. As a frontend-focused developer, a simple landing page might take 1-2 weeks, while a complex frontend application could take around 1-2 months. I provide detailed timelines after understanding your requirements.",
     category: "Process",
   },
   {

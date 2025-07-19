@@ -5,7 +5,10 @@ import { Marquee } from "../magicui/marquee";
 
 export default function Hero() {
   return (
-    <main id="home" className="bg-images min-h-screen flex items-center">
+    <main
+      id="home"
+      className="bg-images fade-image-bg min-h-screen flex items-center"
+    >
       <div className="container mx-auto max-w-6xl px-6 py-8">
         {/* Two Column Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -53,6 +56,10 @@ export default function Hero() {
             {/* Action Buttons - Seventh Animation */}
             <div className="flex gap-6 justify-center lg:justify-start flex-wrap animate-slide-in-left animation-delay-1000">
               <button
+                onClick={() => {
+                  const projectsSection = document.getElementById("projects");
+                  projectsSection?.scrollIntoView({ behavior: "smooth" });
+                }}
                 className="font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 group hover:opacity-80 shadow-lg"
                 style={{
                   backgroundColor: "var(--primary-color)",
@@ -65,19 +72,21 @@ export default function Hero() {
                 />
                 View Portfolio
               </button>
-              <button
-                className="border-2 font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 group hover:opacity-80 shadow-lg"
+              <a
+                href="/assets/Resume/Raffy Francisco.pdf"
+                download="Raffy Francisco.pdf"
+                className="border-2 font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 group hover:opacity-80 shadow-lg cursor-pointer"
                 style={{
                   borderColor: "var(--secondary-color)",
                   color: "var(--secondary-color)",
                 }}
               >
                 <Icon
-                  icon="mdi:email"
+                  icon="mdi:download"
                   className="text-xl group-hover:scale-110 transition-transform"
                 />
                 Download Resume
-              </button>
+              </a>
             </div>
           </div>
 

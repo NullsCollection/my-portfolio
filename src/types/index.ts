@@ -23,6 +23,7 @@ export interface Project {
   description: string;
   imageClass: string;
   imageUrl?: string;
+  images?: string[];
   technologies: string[];
   category: string;
   link: string;

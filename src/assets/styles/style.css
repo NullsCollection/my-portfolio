@@ -130,3 +130,70 @@
 .service-delay-3 {
   animation-delay: 0.8s;
 }
+
+/* Behance-Style Image Gallery */
+.behance-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+
+.behance-image-container {
+  width: 100%;
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.behance-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.behance-image:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive image scaling */
+.behance-image-responsive {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* For very tall images */
+.behance-image-tall {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+/* Seamless gallery without gaps */
+.seamless-gallery {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.seamless-gallery .gallery-item {
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.seamless-gallery .gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}

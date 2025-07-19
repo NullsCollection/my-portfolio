@@ -31,7 +31,7 @@ const mockProjects: Project[] = [
     featured: true,
   },
   {
-    id: 4,
+    id: 3,
     title: "Travel Portal | Web Design Solution",
     category: "web",
     imageClass: "project-image-4",
@@ -42,7 +42,7 @@ const mockProjects: Project[] = [
     featured: false,
   },
   {
-    id: 3,
+    id: 4,
     title: "Realstate Landing Page | Web Design Solution",
     category: "web",
     imageClass: "project-image-3",
