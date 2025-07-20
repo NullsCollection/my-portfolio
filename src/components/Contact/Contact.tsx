@@ -17,7 +17,7 @@ export default function Contact() {
     type: "success" | "error" | null;
     message: string;
   }>({ type: null, message: "" });
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
 
   const {
     sectionVariants,
@@ -101,7 +101,7 @@ export default function Contact() {
             className="text-lg text-secondary max-w-2xl mx-auto"
             variants={descriptionVariants}
           >
-            Have a project in mind? Let's work together to bring your ideas to
+            Have a project in mind? Let&apos;s work together to bring your ideas to
             life
           </motion.p>
         </div>
@@ -110,7 +110,7 @@ export default function Contact() {
           {/* Contact Information */}
           <motion.div variants={cardVariants}>
             <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-primary font-bold mb-4">
-              Let's
+              Let&apos;s
               <span className="block mt-1 sm:mt-2 text-light">Connect</span>
             </h3>
 
@@ -215,7 +215,7 @@ export default function Contact() {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-light-bg-color border border-secondary border-opacity-20 rounded-lg text-light text-sm placeholder-secondary focus:outline-none focus:border-primary transition-colors"
-                    placeholder="What's this about?"
+                    placeholder="What&apos;s on your mind?"
                   />
                 </div>
 

@@ -10,7 +10,7 @@ const categories = ["All", "Technical", "Process", "General", "Pricing"];
 export default function FAQ() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+
 
   const {
     sectionVariants,
@@ -96,8 +96,7 @@ export default function FAQ() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                onHoverStart={() => setHoveredCard(faq.id)}
-                onHoverEnd={() => setHoveredCard(null)}
+
               >
                 <button
                   onClick={() => toggleFAQ(faq.id)}
@@ -156,7 +155,7 @@ export default function FAQ() {
               Still Have Questions?
             </h3>
             <p className="text-secondary mb-6">
-              Can't find the answer you're looking for? Feel free to reach out!
+              Can&apos;t find the answer you&apos;re looking for? Feel free to reach out!
             </p>
             <motion.button
               className="inline-flex items-center gap-2 bg-primary text-dark font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-300"

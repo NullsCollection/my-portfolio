@@ -1,7 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Icon } from "@iconify/react";
-import { Marquee } from "../magicui/marquee";
 
 export default function Hero() {
   return (
@@ -43,7 +42,7 @@ export default function Hero() {
 
               {/* Name - Fifth Animation */}
               <p className="text-lg md:text-xl lg:text-2xl mx-auto text-light flex items-center justify-center lg:justify-start gap-2 animate-fade-in-up animation-delay-800">
-                I'm Raffy Francisco
+                I&apos;m Raffy Francisco
               </p>
 
               {/* Description - Sixth Animation */}

@@ -37,9 +37,7 @@ export default function Projects() {
     }
   };
 
-  const handleNavigateProject = (project: Project) => {
-    setSelectedProject(project);
-  };
+
 
   const closeModal = () => {
     setIsModalOpen(false);

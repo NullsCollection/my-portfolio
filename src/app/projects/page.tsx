@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useGalleryData } from "@/hooks/MockData/Projects/useGalleryData";
 
@@ -97,11 +98,12 @@ export default function AllProjectsPage() {
                 <div
                   className={`${image.height} relative overflow-hidden rounded-lg bg-light-bg-color`}
                 >
-                  <img
+                  <Image
                     src={image.src}
                     alt={image.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    loading="lazy"
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   />
                 </div>
               </motion.div>

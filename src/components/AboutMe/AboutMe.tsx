@@ -61,14 +61,14 @@ export default function AboutMe() {
                 className="text-2xl md:text-3xl font-bold text-dark mb-4"
                 variants={titleVariants}
               >
-                Hi, I'm a Creative Developer
+                Hi, I&apos;m a Creative Developer
               </motion.h3>
 
               <motion.p
                 className="text-secondary leading-relaxed"
                 variants={descriptionVariants}
               >
-                I'm a passionate multi-role developer and graphic designer with
+                I&apos;m a passionate Full-Stack Developer and Graphic Designer with
                 over 4 years of experience creating digital solutions that
                 combine beautiful design with robust functionality. I specialize
                 in frontend development, modern web technologies, and 3D vector
