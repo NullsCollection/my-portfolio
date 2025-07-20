@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 import { Project } from "@/types";
 import { getProjectImages } from "@/utils/projectImageLoader";
 
@@ -54,7 +55,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
     if (newIndex !== -1) {
       setCurrentProjectIndex(newIndex);
     }
-  }, [project?.id, projects]);
+  }, [project, projects]);
 
   // Keyboard navigation useEffect
   useEffect(() => {
@@ -223,11 +224,14 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                       key={`${currentProject.id}-image-${index}`}
                       className="gallery-item"
                     >
-                      <img
+                      <Image
                         src={image}
                         alt={`${currentProject.title} - Image ${index + 1}`}
+                        width={800}
+                        height={600}
                         className="gallery-image"
                         loading="lazy"
+                        unoptimized={true}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = "/assets/common/placeholder.jpg";

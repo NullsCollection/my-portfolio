@@ -167,7 +167,7 @@ export interface SectionProps extends BaseComponentProps {
 export interface LoadingState {
   isLoading: boolean;
   error?: string | null;
-  data?: any;
+  data?: unknown;
 }
 
 export interface SkeletonProps {
@@ -199,7 +199,7 @@ export interface FormValidationRules {
 }
 
 // API Response Types
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
   success: boolean;
   data?: T;
   error?: string;

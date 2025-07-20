@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { useCountUp } from "@/hooks/ScrollAnimation/useCountUp";
@@ -8,7 +8,7 @@ import { AnimatedAchievement } from "@/types";
 
 interface AchievementCardProps {
   achievement: AnimatedAchievement;
-  variants?: any;
+  variants?: Variants;
   index?: number;
 }
 

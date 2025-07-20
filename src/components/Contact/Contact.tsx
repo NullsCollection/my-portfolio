@@ -159,7 +159,7 @@ export default function Contact() {
               </h4>
               <p className="text-secondary text-sm">
                 I typically respond to emails within 24 hours. For urgent
-                matters, please include "URGENT" in your subject line.
+                matters, please include &quot;URGENT&quot; in your subject line.
               </p>
             </motion.div>
           </motion.div>

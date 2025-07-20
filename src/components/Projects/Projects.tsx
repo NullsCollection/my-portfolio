@@ -3,7 +3,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useProjectData } from "@/hooks/MockData/Projects/useProjectData";
+import {
+  useProjectData,
+  Project as MockProject,
+} from "@/hooks/MockData/Projects/useProjectData";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { ProjectCardSkeleton } from "@/components/ui/SkeletonCard";
@@ -26,7 +29,7 @@ export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const openModal = (project: any) => {
+  const openModal = (project: MockProject) => {
     // Find the converted project from our memoized array to maintain referential equality
     const convertedProject = convertedProjects.find(
       (p) => p.id === project.id.toString()
@@ -36,8 +39,6 @@ export default function Projects() {
       setIsModalOpen(true);
     }
   };
-
-
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -157,7 +158,7 @@ export default function Projects() {
               Array.from({ length: 6 }).map((_, index) => (
                 <ProjectCardSkeleton key={`skeleton-${index}`} />
               ))
-            : filteredProjects.map((project, index) => (
+            : filteredProjects.map((project) => (
                 <motion.div
                   key={project.id}
                   className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"

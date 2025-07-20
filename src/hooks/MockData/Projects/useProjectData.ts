@@ -5,7 +5,7 @@ export interface Project extends Omit<ProjectType, "id"> {
   id: number;
 }
 
-export interface FilterOption extends ProjectFilter {}
+export type FilterOption = ProjectFilter;
 
 const mockProjects: Project[] = [
   {

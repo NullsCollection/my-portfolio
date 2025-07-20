@@ -7,19 +7,12 @@ import {
   throttle,
 } from "@/lib/scrollUtils";
 
-export default function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("home");
+const sectionIds = ["home", "services", "projects", "about", "contact", "faq"];
 
-  const sectionIds = [
-    "home",
-    "services",
-    "projects",
-    "about",
-    "contact",
-    "faq",
-  ];
+export default function NavBar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

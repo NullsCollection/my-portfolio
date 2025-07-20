@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { AchievementCard } from "./AchievementCard";
 import { AchievementCardSkeleton } from "@/components/ui/SkeletonCard";
 import { AnimatedAchievement } from "@/types";
@@ -8,8 +8,8 @@ import { AnimatedAchievement } from "@/types";
 interface AchievementsProps {
   achievements: AnimatedAchievement[];
   isLoading: boolean;
-  sectionVariants?: any;
-  cardVariants?: any;
+  sectionVariants?: Variants;
+  cardVariants?: Variants;
 }
 
 export const Achievements: React.FC<AchievementsProps> = ({

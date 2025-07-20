@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Icon } from "@iconify/react";
 import { BorderBeam } from "@/components/magicui/border-beam";
 
@@ -14,7 +14,7 @@ interface Skill {
 interface SkillCardProps {
   skill: Skill;
   index: number;
-  variants?: any;
+  variants?: Variants;
 }
 
 export const SkillCard: React.FC<SkillCardProps> = ({
@@ -30,10 +30,10 @@ export const SkillCard: React.FC<SkillCardProps> = ({
       variants={variants}
       initial={{ opacity: 0, x: -50, scale: 0.9 }}
       whileInView={{ opacity: 1, x: 0, scale: 1 }}
-      transition={{ 
-        duration: 0.5, 
+      transition={{
+        duration: 0.5,
         delay: index * 0.1,
-        ease: "easeOut"
+        ease: "easeOut",
       }}
       viewport={{ once: true, amount: 0.3 }}
       whileHover={{ scale: 1.05, y: -5 }}

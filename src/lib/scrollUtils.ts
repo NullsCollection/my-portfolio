@@ -16,12 +16,7 @@ export const scrollToSection = (
   sectionId: string,
   options: ScrollOptions = {}
 ): void => {
-  const {
-    behavior = "smooth",
-    block = "start",
-    inline = "nearest",
-    offset = 0,
-  } = options;
+  const { behavior = "smooth", offset = 0 } = options;
 
   try {
     const element = document.getElementById(sectionId);
@@ -86,7 +81,7 @@ export const isElementInViewport = (
 /**
  * Throttle function to limit function calls
  */
-export const throttle = <T extends (...args: any[]) => void>(
+export const throttle = <T extends (...args: unknown[]) => void>(
   func: T,
   limit: number
 ): T => {

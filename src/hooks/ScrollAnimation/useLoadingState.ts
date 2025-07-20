@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { LoadingState } from "@/types";
 
 /**
  * Custom hook for managing loading states
  */
-export const useLoadingState = <T = any>(
+export const useLoadingState = <T = unknown>(
   initialData?: T,
   initialLoading: boolean = false
 ): LoadingState & {
@@ -63,18 +63,18 @@ export const useSimulatedLoading = (
   stopLoading: () => void;
 } => {
   const [isLoading, setIsLoading] = useState<boolean>(autoStart);
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<unknown>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const startLoading = () => {
+  const startLoading = useCallback(() => {
     setIsLoading(true);
     setError(null);
-    
+
     setTimeout(() => {
       setIsLoading(false);
       setData({ loaded: true });
     }, duration);
-  };
+  }, [duration]);
 
   const stopLoading = () => {
     setIsLoading(false);
@@ -84,7 +84,7 @@ export const useSimulatedLoading = (
     if (autoStart) {
       startLoading();
     }
-  }, [autoStart]);
+  }, [autoStart, startLoading]);
 
   return {
     isLoading,
