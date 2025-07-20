@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { useExitAnimation } from "@/hooks/ScrollAnimation/useExitAnimation";
+import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { contactMethods } from "@/hooks/MockData/Projects/useContact";
 
 export default function Contact() {
@@ -13,6 +13,10 @@ export default function Contact() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   const {
@@ -21,7 +25,12 @@ export default function Contact() {
     descriptionVariants,
     cardVariants,
     viewportOptions,
-  } = useExitAnimation({ exitDuration: 0.5, threshold: 0.1, playOnce: false });
+  } = useScrollAnimation({
+    animationType: "slide",
+    exitDuration: 0.5,
+    threshold: 0.1,
+    playOnce: false,
+  });
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -33,13 +42,40 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
 
-    // Simulate form submission
-    setTimeout(() => {
-      alert("Thank you for your message! I'll get back to you soon.");
-      setFormData({ name: "", email: "", subject: "", message: "" });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus({
+          type: "success",
+          message: "Thank you for your message! I'll get back to you soon.",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus({
+          type: "error",
+          message: data.message || "Something went wrong. Please try again.",
+        });
+      }
+    } catch (error) {
+      console.error("Contact form error:", error);
+      setSubmitStatus({
+        type: "error",
+        message: "Network error. Please check your connection and try again.",
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -73,9 +109,9 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
           <motion.div variants={cardVariants}>
-            <h3 className="text-8xl text-primary md:text-7xl lg:text-8xl font-bold mb-4">
+            <h3 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-primary font-bold mb-4">
               Let's
-              <span className="block mt-2 text-light">Connect</span>
+              <span className="block mt-1 sm:mt-2 text-light">Connect</span>
             </h3>
 
             {/* Contact Info */}
@@ -197,6 +233,33 @@ export default function Contact() {
                     placeholder="Tell me about your project..."
                   />
                 </div>
+
+                {/* Status Message */}
+                {submitStatus.type && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`p-4 rounded-lg text-center ${
+                      submitStatus.type === "success"
+                        ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                        : "bg-red-500/20 text-red-400 border border-red-500/30"
+                    }`}
+                  >
+                    <div className="flex items-center justify-center gap-2">
+                      <Icon
+                        icon={
+                          submitStatus.type === "success"
+                            ? "mdi:check-circle"
+                            : "mdi:alert-circle"
+                        }
+                        className="text-lg"
+                      />
+                      <span className="text-sm font-medium">
+                        {submitStatus.message}
+                      </span>
+                    </div>
+                  </motion.div>
+                )}
 
                 <motion.button
                   type="submit"

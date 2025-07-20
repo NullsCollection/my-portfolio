@@ -8,7 +8,7 @@ import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { ServiceCardSkeleton } from "@/components/ui/SkeletonCard";
 
 export default function Services() {
-  const { isLoading } = useSimulatedLoading(800, true);
+  const { isLoading } = useSimulatedLoading(1000, false);
 
   // Get animation variants from custom hook with options
   const {

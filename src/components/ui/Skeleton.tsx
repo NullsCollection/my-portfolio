@@ -2,7 +2,7 @@ import React from "react";
 import { SkeletonProps } from "@/types";
 
 /**
- * Skeleton component for loading states
+ * Enhanced Skeleton component for loading states with shimmer effect
  */
 const Skeleton: React.FC<SkeletonProps> = ({
   width = "100%",
@@ -10,7 +10,7 @@ const Skeleton: React.FC<SkeletonProps> = ({
   className = "",
   variant = "rectangular",
 }) => {
-  const baseClasses = "animate-pulse bg-gradient-to-r from-gray-300 to-gray-400";
+  const baseClasses = "relative overflow-hidden bg-gray-200 dark:bg-gray-700";
   
   const variantClasses = {
     text: "rounded-md",
@@ -29,7 +29,19 @@ const Skeleton: React.FC<SkeletonProps> = ({
       style={style}
       role="status"
       aria-label="Loading"
-    />
+    >
+      {/* Enhanced shimmer effect */}
+      <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.5s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/20 dark:via-white/10 to-transparent" />
+      
+      {/* Add shimmer keyframes to document if not already present */}
+      <style jsx>{`
+        @keyframes shimmer {
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
+    </div>
   );
 };
 

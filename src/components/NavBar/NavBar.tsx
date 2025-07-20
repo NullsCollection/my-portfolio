@@ -146,7 +146,7 @@ export default function NavBar() {
                 activeSection === "contact" ? "text-primary" : "text-light"
               }`}
             >
-              Contacts
+              Contact
             </button>
           </div>
 
@@ -183,30 +183,24 @@ export default function NavBar() {
 
         {/* Mobile/Tablet Navigation */}
         <div
-          className={`md:hidden transition-all duration-500 ease-in-out overflow-hidden ${
+          className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
             isMenuOpen
-              ? "max-h-auto opacity-100 transform translate-y-0"
-              : "max-h-0 opacity-0 transform -translate-y-4"
+              ? "h-auto max-h-[80vh] opacity-100"
+              : "h-0 max-h-0 opacity-0"
           }`}
         >
-          <div className="pt-4 pb-2 space-y-2 sm:space-y-3">
+          <div className="pt-4 pb-2 space-y-2 sm:space-y-3 animate-fadeIn">
             <button
               onClick={() => handleNavClick("home")}
-              className={`block w-full text-left hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-100"
-                  : "opacity-0 -translate-x-4"
-              } ${activeSection === "home" ? "text-primary" : "text-light"}`}
+              className={`block w-full text-left hover:text-primary transition-all duration-300 py-2 ${
+                activeSection === "home" ? "text-primary" : "text-light"
+              }`}
             >
               Home
             </button>
             <button
               onClick={() => handleNavClick("services")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-150"
-                  : "opacity-0 -translate-x-4"
-              } ${
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
                 activeSection === "services" ? "text-primary" : "text-light"
               }`}
             >
@@ -214,11 +208,7 @@ export default function NavBar() {
             </button>
             <button
               onClick={() => handleNavClick("projects")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-200"
-                  : "opacity-0 -translate-x-4"
-              } ${
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
                 activeSection === "projects" ? "text-primary" : "text-light"
               }`}
             >
@@ -226,43 +216,31 @@ export default function NavBar() {
             </button>
             <button
               onClick={() => handleNavClick("about")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-300"
-                  : "opacity-0 -translate-x-4"
-              } ${activeSection === "about" ? "text-primary" : "text-light"}`}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
+                activeSection === "about" ? "text-primary" : "text-light"
+              }`}
             >
               About
             </button>
             <button
               onClick={() => handleNavClick("faq")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-400"
-                  : "opacity-0 -translate-x-4"
-              } ${activeSection === "faq" ? "text-primary" : "text-light"}`}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
+                activeSection === "faq" ? "text-primary" : "text-light"
+              }`}
             >
               FAQ
             </button>
             <button
               onClick={() => handleNavClick("contact")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-350"
-                  : "opacity-0 -translate-x-4"
-              } ${activeSection === "contact" ? "text-primary" : "text-light"}`}
+              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
+                activeSection === "contact" ? "text-primary" : "text-light"
+              }`}
             >
               Contact
             </button>
 
             {/* Mobile/Tablet Social Icons */}
-            <div
-              className={`flex items-left justify-left sm:justify-start space-x-4 sm:space-x-6 pt-4 mt-4 border-t border-light-blue transform ${
-                isMenuOpen
-                  ? "opacity-100 translate-x-0 delay-450"
-                  : "opacity-0 -translate-x-4"
-              } transition-all duration-300`}
-            >
+            <div className="flex items-left justify-left sm:justify-start space-x-4 sm:space-x-6 pt-4 mt-4 border-t border-light-blue transition-all duration-300">
               <a
                 href="https://www.behance.net/nullzvectcollection"
                 target="_blank"

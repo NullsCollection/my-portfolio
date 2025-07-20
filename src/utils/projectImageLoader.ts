@@ -8,7 +8,7 @@ const PROJECT_FOLDER_MAP: Record<number, string> = {
   1: "GameUI",
   2: "Monster",
   3: "TravelPortal",
-  4: "RealState", // Note: folder is "RealState" not "TravelPortal" for ID 4
+  4: "RealState",
   5: "Christmas",
   6: "Halloween",
 };

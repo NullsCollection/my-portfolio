@@ -17,10 +17,10 @@ export const scrollToSection = (
   options: ScrollOptions = {}
 ): void => {
   const {
-    behavior = 'smooth',
-    block = 'start',
-    inline = 'nearest',
-    offset = 0
+    behavior = "smooth",
+    block = "start",
+    inline = "nearest",
+    offset = 0,
   } = options;
 
   try {
@@ -37,10 +37,10 @@ export const scrollToSection = (
     // Smooth scroll to the calculated position
     window.scrollTo({
       top: targetPosition,
-      behavior
+      behavior,
     });
   } catch (error) {
-    console.error('Error scrolling to section:', error);
+    console.error("Error scrolling to section:", error);
   }
 };
 
@@ -71,7 +71,8 @@ export const isElementInViewport = (
   threshold: number = 0
 ): boolean => {
   const rect = element.getBoundingClientRect();
-  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+  const windowHeight =
+    window.innerHeight || document.documentElement.clientHeight;
   const windowWidth = window.innerWidth || document.documentElement.clientWidth;
 
   return (

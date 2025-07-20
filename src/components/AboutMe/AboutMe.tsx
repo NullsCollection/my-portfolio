@@ -117,12 +117,12 @@ export default function AboutMe() {
                   className="inline-flex items-center gap-2 bg-primary text-dark font-medium px-8 py-3 rounded-lg hover:opacity-90 transition-all duration-300 shadow-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() =>
-                    window.open(
-                      "https://mail.google.com/mail/?view=cm&fs=1&to=raffy7792@gmail.com",
-                      "_blank"
-                    )
-                  }
+                  onClick={() => {
+                    const contactSection = document.getElementById('contact');
+                    if (contactSection) {
+                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
                 >
                   Get In Touch
                   <Icon icon="mdi:arrow-right" className="text-xl" />

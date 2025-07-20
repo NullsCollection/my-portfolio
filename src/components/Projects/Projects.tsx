@@ -1,7 +1,8 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useProjectData } from "@/hooks/MockData/Projects/useProjectData";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
@@ -10,23 +11,30 @@ import FullScreenModal from "@/components/Modal/ProjectModal/FullScreenModal";
 import { Project } from "@/types";
 
 export default function Projects() {
+  const [isClient, setIsClient] = useState(false);
+
   const { projects, filterOptions, activeFilter, setActiveFilter } =
     useProjectData();
 
-  const { isLoading } = useSimulatedLoading(1200, true);
+  const { isLoading } = useSimulatedLoading(1000, false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const openModal = (project: any) => {
-    // Convert mock data project to main Project type
-    const convertedProject: Project = {
-      ...project,
-      id: project.id.toString(), // Convert number id to string
-    };
-    setSelectedProject(convertedProject);
-    setIsModalOpen(true);
+    // Find the converted project from our memoized array to maintain referential equality
+    const convertedProject = convertedProjects.find(
+      (p) => p.id === project.id.toString()
+    );
+    if (convertedProject) {
+      setSelectedProject(convertedProject);
+      setIsModalOpen(true);
+    }
   };
 
   const handleNavigateProject = (project: Project) => {
@@ -60,11 +68,29 @@ export default function Projects() {
       : projects.filter((project) => project.category === activeFilter);
   }, [projects, activeFilter]);
 
-  // Convert all projects for modal navigation
-  const convertedProjects: Project[] = filteredProjects.map((project) => ({
-    ...project,
-    id: project.id.toString(),
-  }));
+  // Convert all projects for modal navigation - properly memoized with stable keys
+  const convertedProjects: Project[] = useMemo(() => {
+    return filteredProjects.map((project) => ({
+      ...project,
+      id: project.id.toString(),
+      // Ensure all required properties are present
+      imageUrl:
+        project.imageUrl || `/assets/Projects/project-${project.id}/main.jpg`,
+      images: project.images || [],
+    }));
+  }, [filteredProjects]);
+
+  if (!isClient) {
+    return (
+      <section id="projects" className="py-20 px-6 bg-dark">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            <div className="text-light">Loading projects...</div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <motion.section
@@ -209,10 +235,12 @@ export default function Projects() {
           exit="exit"
           viewport={viewportOptions}
         >
-          <button className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg">
-            View All Projects
-            <Icon icon="mdi:arrow-right" className="text-xl" />
-          </button>
+          <Link href="/projects">
+            <button className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:border-primary hover:text-primary">
+              View All Projects
+              <Icon icon="mdi:arrow-right" className="text-xl" />
+            </button>
+          </Link>
         </motion.div>
       </div>
 
