@@ -31,7 +31,9 @@ export const metadata: Metadata = {
     "Responsive Design",
     "Modern Web Technologies",
   ],
-  authors: [{ name: "Raffy Francisco", url: "https://raffyfrancisco.dev" }],
+  authors: [
+    { name: "Raffy Francisco", url: "https://raffy-francisco.vercel.app/" },
+  ],
   creator: "Raffy Francisco",
   publisher: "Raffy Francisco",
   robots: {
@@ -48,10 +50,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://raffyfrancisco.dev",
-    title: "Raffy Francisco | Full-Stack Developer & Graphic Designer",
+    url: "https://raffy-francisco.vercel.app/",
+    title: "Raffy Francisco | Developer & Graphic Designer",
     description:
-      "Professional Full-Stack Developer and Graphic Designer specializing in React, Next.js, TypeScript, and modern web technologies. Creating beautiful, responsive websites and mobile applications.",
+      "Professional Developer and Graphic Designer specializing in React, Next.js, TypeScript, and modern web technologies. Creating beautiful, responsive websites and mobile applications.",
     siteName: "Raffy Francisco Portfolio",
     images: [
       {
@@ -71,7 +73,7 @@ export const metadata: Metadata = {
     creator: "@raffyfrancisco",
   },
   alternates: {
-    canonical: "https://raffyfrancisco.dev",
+    canonical: "https://raffy-francisco.vercel.app/",
   },
   category: "technology",
 };
@@ -88,8 +90,8 @@ const structuredData = {
   name: "Raffy Francisco",
   jobTitle: "Full-Stack Developer & Graphic Designer",
   description:
-    "Professional Full-Stack Developer and Graphic Designer specializing in React, Next.js, TypeScript, and modern web technologies.",
-  url: "https://raffyfrancisco.dev",
+    "Professional Developer and Graphic Designer specializing in React, Next.js, TypeScript, and modern web technologies.",
+  url: "https://raffy-francisco.vercel.app/",
   email: "raffy7792@gmail.com",
   telephone: "+63 960 072 3886",
   address: {

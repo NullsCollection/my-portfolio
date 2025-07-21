@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://yourportfolio.vercel.app/sitemap.xml
+Sitemap: https://raffy-francisco.vercel.app/
 
 # Disallow admin or private areas (if any)
 Disallow: /api/
