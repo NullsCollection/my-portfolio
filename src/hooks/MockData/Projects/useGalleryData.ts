@@ -112,6 +112,18 @@ const allProjectImages: GalleryImage[] = [
     title: "Monster Character",
     height: "h-50",
   },
+  {
+    id: 18,
+    src: "/assets/Projects/TravelPortal/Artboard 1.png",
+    title: "Travel Portal",
+    height: "h-90",
+  },
+  {
+    id: 19,
+    src: "/assets/Projects/Sonic/7.jpg",
+    title: "Sonic Character Design",
+    height: "h-30",
+  },
 ];
 
 export const useGalleryData = () => {

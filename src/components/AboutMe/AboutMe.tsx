@@ -68,7 +68,7 @@ export default function AboutMe() {
                 className="text-secondary leading-relaxed"
                 variants={descriptionVariants}
               >
-                I&apos;m a passionate Full-Stack Developer and Graphic Designer with
+                I&apos;m a passionate Web Developer and Graphic Designer with
                 over 4 years of experience creating digital solutions that
                 combine beautiful design with robust functionality. I specialize
                 in frontend development, modern web technologies, and 3D vector
@@ -118,9 +118,9 @@ export default function AboutMe() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => {
-                    const contactSection = document.getElementById('contact');
+                    const contactSection = document.getElementById("contact");
                     if (contactSection) {
-                      contactSection.scrollIntoView({ behavior: 'smooth' });
+                      contactSection.scrollIntoView({ behavior: "smooth" });
                     }
                   }}
                 >
