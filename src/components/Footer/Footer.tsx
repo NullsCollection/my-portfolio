@@ -76,8 +76,8 @@ export default function Footer() {
               className="text-sm leading-relaxed mb-4"
               style={{ color: "var(--secondary-color)" }}
             >
-              Crafting digital experiences with passion and precision. Let's
-              build something amazing together.
+              Crafting digital experiences with passion and precision.
+              Let&apos;s build something amazing together.
             </p>
             <div className="flex justify-center md:justify-start gap-4">
               {socialLinks.map((social, index) => (
@@ -158,7 +158,7 @@ export default function Footer() {
               className="text-sm text-center md:text-left"
               style={{ color: "var(--secondary-color)" }}
             >
-              © {currentYear} Portfolio. All rights reserved.
+              {currentYear} Portfolio. All rights reserved.
             </p>
 
             {/* Tech Stack */}
