@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { ServiceCardSkeleton } from "@/components/ui/SkeletonCard";
+import { services } from "@/hooks/MockData/Projects/useServices";
 
 export default function Services() {
   const { isLoading } = useSimulatedLoading(1000, false);
@@ -25,33 +26,6 @@ export default function Services() {
     direction: "up",
     animationType: "fade",
   });
-
-  const services = [
-    {
-      icon: "mdi:web",
-      title: "Web Development",
-      description:
-        "Modern, responsive websites built with the latest technologies",
-    },
-    {
-      icon: "mdi:palette",
-      title: "Graphic Design",
-      description:
-        "Creative visual solutions for branding and marketing materials",
-    },
-    {
-      icon: "mdi:mobile-phone",
-      title: "Mobile Apps",
-      description:
-        "Creating beautiful mobile app interfaces and seamless user experiences.",
-    },
-    {
-      icon: "mdi:search-web",
-      title: "SEO Optimization",
-      description:
-        "Improve your website's visibility and search engine rankings",
-    },
-  ];
 
   return (
     <motion.section

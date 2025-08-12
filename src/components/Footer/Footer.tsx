@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
@@ -58,7 +57,6 @@ export default function Footer() {
       className="py-12 mt-20 border-t"
       style={{
         backgroundColor: "var(--light-bg-color)",
-        borderColor: "var(--border-color)",
       }}
     >
       <div className="container mx-auto px-6">
