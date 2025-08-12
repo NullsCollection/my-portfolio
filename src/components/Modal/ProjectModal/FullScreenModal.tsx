@@ -227,11 +227,12 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                       <Image
                         src={image}
                         alt={`${currentProject.title} - Image ${index + 1}`}
-                        width={800}
-                        height={600}
+                        width={1600}
+                        height={1200}
+                        quality={95}
                         className="gallery-image"
-                        loading="lazy"
-                        unoptimized={true}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        priority={index === 0}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = "/assets/common/placeholder.jpg";
