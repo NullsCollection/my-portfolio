@@ -23,8 +23,8 @@ export default function HeroButtons() {
         View Portfolio
       </button>
       <a
-        href="/assets/Resume/Raffy Francisco.pdf"
-        download="Raffy Francisco.pdf"
+        href="/assets/Resume/RESUME-Raffy-francisco.pdf"
+        download="RESUME-Raffy-francisco.pdf"
         className="border-2 font-semibold px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2 group hover:opacity-80 shadow-lg cursor-pointer"
         style={{
           borderColor: "var(--secondary-color)",
