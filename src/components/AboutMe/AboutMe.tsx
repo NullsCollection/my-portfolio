@@ -6,7 +6,11 @@ import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { Skills } from "./Skills";
 import { Achievements } from "./Achievements";
-import { skills, achievements } from "@/hooks/MockData/Projects/useAboutMe";
+import {
+  skills,
+  devOpsSkills,
+  achievements,
+} from "@/hooks/MockData/Projects/useAboutMe";
 
 export default function AboutMe() {
   const { isLoading } = useSimulatedLoading(1000, true);
@@ -134,7 +138,7 @@ export default function AboutMe() {
           {/* Profile Image & Stats */}
           <motion.div className="relative" variants={cardVariants}>
             {/* Profile Image Placeholder */}
-            <div className="relative mx-auto w-80 h-80 mb-8">
+            <div className="relative mx-auto w-90 h-90 mb-8">
               <motion.div
                 className="aboutMe-image w-full h-full rounded-2xl shadow-2xl"
                 whileHover={{ scale: 1.05, rotate: 2 }}
@@ -174,6 +178,7 @@ export default function AboutMe() {
         {/* Skills Section */}
         <Skills
           skills={skills}
+          devOpsSkills={devOpsSkills}
           isLoading={isLoading}
           titleVariants={titleVariants}
           cardVariants={cardVariants}

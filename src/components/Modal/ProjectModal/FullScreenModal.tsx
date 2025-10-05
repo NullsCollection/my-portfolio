@@ -320,6 +320,25 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                       ))}
                     </div>
                   </div>
+                  {/* Live Link */}
+                  <div>
+                    <h4 className="text-base md:text-lg font-semibold text-light mb-3 md:mb-4">
+                      Live Link
+                    </h4>
+                    <div className="flex flex-wrap gap-1.5 md:gap-2">
+                      {currentProject.link.map((link, index) => (
+                        <a
+                          key={`${currentProject.id}-link-${index}`}
+                          href={link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-2 md:px-3 py-1.5 md:py-2 bg-primary text-white text-xs md:text-sm rounded-lg font-medium"
+                        >
+                          Live Preview
+                        </a>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

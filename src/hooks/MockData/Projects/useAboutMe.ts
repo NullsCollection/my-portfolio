@@ -41,6 +41,28 @@ export const skills: SkillCard[] = [
   },
 ];
 
+export const devOpsSkills: SkillCard[] = [
+  {
+    name: "Docker",
+    level: 85,
+    icon: "logos:docker-icon",
+    category: "DevOps",
+  },
+  {
+    name: "Git",
+    level: 90,
+    icon: "logos:git-icon",
+    category: "DevOps",
+  },
+
+  {
+    name: "Vercel",
+    level: 88,
+    icon: "logos:vercel-icon",
+    category: "DevOps",
+  },
+];
+
 export const achievements: AnimatedAchievement[] = [
   {
     number: "50+",
