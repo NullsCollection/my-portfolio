@@ -16,7 +16,7 @@ const mockProjects: Project[] = [
     technologies: ["UI/UX Design", "Mobile App", "Figma"],
     description:
       "A full-featured, next-generation Game Streaming Platform experience live streaming, real-time chat, and robust security.",
-    link: "#",
+    link: ["#"],
     featured: true,
   },
   {
@@ -27,7 +27,7 @@ const mockProjects: Project[] = [
     technologies: ["Illustrator", "Character Design", "Vector 3D"],
     description:
       "Complete character design package including original character concepts, polished illustrations, custom color palettes, expressive poses, and ready-to-use assets.",
-    link: "#",
+    link: ["#"],
     featured: true,
   },
   {
@@ -38,7 +38,7 @@ const mockProjects: Project[] = [
     technologies: ["Web Design", "UI/UX Design", "Figma"],
     description:
       "A travel portal website with a user-friendly interface, real-time flight and hotel search, and secure payment processing.                        ",
-    link: "#",
+    link: ["#"],
     featured: false,
   },
   {
@@ -49,7 +49,7 @@ const mockProjects: Project[] = [
     technologies: ["Web Design", "UI/UX Design", "Figma"],
     description:
       "A sleek, user-friendly real estate landing page designed for effortless property discovery, with clear call-to-actions and an inviting, mobile-optimized experience.",
-    link: "#",
+    link: ["#"],
     featured: false,
   },
 
@@ -61,7 +61,7 @@ const mockProjects: Project[] = [
     technologies: ["Web Design", "UI/UX", "Figma"],
     description:
       "A custom web design project for a holiday-themed WordPress website, with a festive color scheme and an intuitive, user-friendly interface.",
-    link: "#",
+    link: ["#"],
     featured: true,
   },
   {
@@ -72,7 +72,7 @@ const mockProjects: Project[] = [
     technologies: ["Illustrator", "3D Vector", "Illustrations"],
     description:
       "A fully editable illustration project with a vector design, featuring detailed character models, custom color palettes, and ready-to-use assets.",
-    link: "#",
+    link: ["#"],
     featured: false,
   },
 ];

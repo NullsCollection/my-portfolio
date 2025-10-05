@@ -132,7 +132,7 @@
 
 /* Profile image */
 .aboutMe-image {
-  background-image: url("../common/1.jpg");
+  background-image: url("/assets/pfp.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
