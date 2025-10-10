@@ -1,9 +1,8 @@
-
 import NavBar from "../components/NavBar";
 import Hero from "../components/hero";
 import Footer from "../components/Footer";
 import Services from "../components/Services";
-import Projects from "../components/Projects";
+import Projects from "../components/Projects/ProjectNew";
 import AboutMe from "../components/AboutMe";
 import FAQ from "../components/FAQ/FAQ";
 import Contact from "../components/Contact/Contact";
@@ -18,7 +17,6 @@ export default function Home() {
       <AboutMe />
       <FAQ />
       <Contact />
-      {/* Footer */}
       <Footer />
     </div>
   );

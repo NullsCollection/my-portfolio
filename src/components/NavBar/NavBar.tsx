@@ -113,7 +113,7 @@ export default function NavBar() {
             </button>
             <button
               onClick={() => handleNavClick("home")}
-              className="font-bold text-2xl text-primary transform hover:scale-105 transition-all duration-300"
+              className="font-bold text-3xl text-primary transform hover:scale-105 transition-all duration-300"
             >
               NuLLzCollection
             </button>
