@@ -43,13 +43,13 @@ const mockProjects: Project[] = [
   },
   {
     id: 4,
-    title: "Realstate Landing Page | Web Design Solution",
+    title: "RRM Dev Core Landing Page | Web Design Solution",
     category: "web",
     imageClass: "project-image-3",
-    technologies: ["Web Design", "UI/UX Design", "Figma"],
+    technologies: ["Web Development", "Next.js", "Tailwind CSS", "TypeScript"],
     description:
-      "A sleek, user-friendly real estate landing page designed for effortless property discovery, with clear call-to-actions and an inviting, mobile-optimized experience.",
-    link: ["#"],
+      "A sleek, user-friendly RRM landing page that offers different digital services, with clear call-to-actions and an inviting, mobile-optimized experience.",
+    link: ["https://rrmdigitalservices.com/"],
     featured: false,
   },
 

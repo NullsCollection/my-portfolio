@@ -8,7 +8,7 @@ const PROJECT_FOLDER_MAP: Record<number, string> = {
   1: "GameUI",
   2: "Monster",
   3: "TravelPortal",
-  4: "RealState",
+  4: "RRM",
   5: "Christmas",
   6: "Halloween",
 };
@@ -36,12 +36,7 @@ const PROJECT_IMAGES: Record<string, string[]> = {
     "Screenshot 2025-03-05 195547.png",
   ],
   TravelPortal: ["Artboard 2.png", "Artboard 1.png", "Home Pages.png"],
-  RealState: [
-    "Artboard 1.png",
-    "Artboard 1 copy.png",
-    "Artboard 4.png",
-    "Desktop-1.png",
-  ],
+  RRM: ["rrm-details.png"],
   Christmas: ["1.jpg", "UI-Christmas.jpg"],
   Halloween: ["1.jpg", "2.jpg", "H-1.jpg", "3.jpg", "6.jpg", "7.jpg", "5.jpg"],
 };
