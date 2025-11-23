@@ -6,10 +6,13 @@ import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { Skills } from "./Skills";
 import { Achievements } from "./Achievements";
+import { Experience } from "./Experience";
 import {
   skills,
   devOpsSkills,
   achievements,
+  experiences,
+  education,
 } from "@/hooks/MockData/Projects/useAboutMe";
 
 export default function AboutMe() {
@@ -166,6 +169,15 @@ export default function AboutMe() {
             </div>
           </motion.div>
         </div>
+
+        {/* Experience Section */}
+        <Experience
+          experiences={experiences}
+          education={education}
+          isLoading={isLoading}
+          titleVariants={titleVariants}
+          cardVariants={cardVariants}
+        />
 
         {/* Achievements */}
         <Achievements

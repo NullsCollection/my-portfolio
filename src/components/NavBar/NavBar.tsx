@@ -7,7 +7,7 @@ import {
   throttle,
 } from "@/lib/scrollUtils";
 
-const sectionIds = ["home", "services", "projects", "about", "contact", "faq"];
+const sectionIds = ["home", "services", "projects", "about", "faq", "contact"];
 
 export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);

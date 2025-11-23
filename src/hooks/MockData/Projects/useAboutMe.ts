@@ -1,4 +1,4 @@
-import { SkillCard, AnimatedAchievement } from "@/types";
+import { SkillCard, AnimatedAchievement, Experience, Education } from "@/types";
 
 export const skills: SkillCard[] = [
   { name: "React", level: 95, icon: "logos:react", category: "Frontend" },
@@ -91,5 +91,67 @@ export const achievements: AnimatedAchievement[] = [
     icon: "mdi:star",
     value: 150,
     suffix: "+",
+  },
+];
+
+export const experiences: Experience[] = [
+  {
+    id: "1",
+    title: "Web Developer     ",
+    company: "KitCode",
+    employmentType: "Full-time",
+    startDate: "Jan 2025",
+    endDate: "Present",
+    duration: "11 mos",
+    description:
+      "Creating responsive and user-friendly websites using React and TypeScript.",
+    skills: ["Web Development", "Front-End Development"],
+  },
+  {
+    id: "2",
+    title: "Graphic Designer",
+    company: "Zeinous",
+    employmentType: "Full-time",
+    startDate: "Jul 2023",
+    endDate: "Jan 2025",
+    duration: "1 yr 7 mos",
+    description:
+      "Designing posters, banners, social media content, and seasonal-themed illustrations.",
+    skills: ["Graphic Design", "Illustration", "UI/UX Design"],
+  },
+  {
+    id: "3",
+    title: "Graphic Designer",
+    company: "BGK Printing Services",
+    employmentType: "Full-time",
+    startDate: "Aug 2021",
+    endDate: "Jul 2023",
+    duration: "2 yrs",
+    description: "Creating printing materials and sublimation clothing design",
+    skills: ["Graphic Design", "Print Design", "Sublimation"],
+  },
+];
+
+export const education: Education[] = [
+  {
+    id: "1",
+    institution: "Mindoro State College - Bongbong, Oriental Mindoro",
+    degree: "Bachelor of Science in Information Technology",
+    startDate: "2015",
+    endDate: "2019",
+  },
+  {
+    id: "2",
+    institution: "Dayhagan National High School",
+    degree: "Highschool",
+    startDate: "2011",
+    endDate: "2015",
+  },
+  {
+    id: "3",
+    institution: "Roxas Central School",
+    degree: "Elementary",
+    startDate: "1996",
+    endDate: "2004",
   },
 ];

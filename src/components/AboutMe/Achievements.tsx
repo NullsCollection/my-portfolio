@@ -10,6 +10,7 @@ interface AchievementsProps {
   isLoading: boolean;
   sectionVariants?: Variants;
   cardVariants?: Variants;
+  titleVariants?: Variants;
 }
 
 export const Achievements: React.FC<AchievementsProps> = ({
@@ -17,25 +18,29 @@ export const Achievements: React.FC<AchievementsProps> = ({
   isLoading,
   sectionVariants,
   cardVariants,
+  titleVariants,
 }) => {
   return (
-    <motion.div
-      className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
-      variants={sectionVariants}
-    >
-      {isLoading ? (
-        Array.from({ length: 4 }).map((_, index) => (
-          <AchievementCardSkeleton key={`achievement-skeleton-${index}`} />
-        ))
-      ) : (
-        achievements.map((achievement, index) => (
-          <AchievementCard
-            key={index}
-            achievement={achievement}
-            variants={cardVariants}
-          />
-        ))
-      )}
+    <motion.div variants={sectionVariants}>
+      <motion.h3
+        className="text-2xl md:text-3xl font-bold text-dark text-center mb-12"
+        variants={titleVariants}
+      >
+        Achievements
+      </motion.h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        {isLoading
+          ? Array.from({ length: 4 }).map((_, index) => (
+              <AchievementCardSkeleton key={`achievement-skeleton-${index}`} />
+            ))
+          : achievements.map((achievement, index) => (
+              <AchievementCard
+                key={index}
+                achievement={achievement}
+                variants={cardVariants}
+              />
+            ))}
+      </div>
     </motion.div>
   );
 };

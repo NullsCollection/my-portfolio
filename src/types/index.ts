@@ -71,6 +71,32 @@ export type SkillCategory =
   | "Mobile"
   | "Database";
 
+// Experience Types
+export interface Experience {
+  id: string;
+  title: string;
+  company: string;
+  employmentType: string;
+  startDate: string;
+  endDate: string;
+  duration: string;
+  location?: string;
+  description?: string;
+  skills: string[];
+  icon?: string;
+}
+
+// Education Types
+export interface Education {
+  id: string;
+  institution: string;
+  degree: string;
+  field?: string;
+  startDate: string;
+  endDate: string;
+  description?: string;
+}
+
 // Achievement Types
 export interface Achievement {
   id: string;
