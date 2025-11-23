@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Icon } from "@iconify/react";
 import {
   Experience as ExperienceType,
@@ -10,16 +10,12 @@ import {
 interface ExperienceProps {
   experiences: ExperienceType[];
   education: EducationType[];
-  isLoading: boolean;
-  titleVariants: any;
-  cardVariants: any;
+  cardVariants?: Variants;
 }
 
 export function Experience({
   experiences,
   education,
-  isLoading,
-  titleVariants,
   cardVariants,
 }: ExperienceProps) {
   return (
@@ -58,7 +54,7 @@ const Column = ({
   icon: string;
   items: (ExperienceType | EducationType)[];
   type: "education" | "experience";
-  variants: any;
+  variants?: Variants;
 }) => {
   return (
     <motion.div variants={variants} className="flex flex-col h-full">
@@ -93,7 +89,7 @@ const TimelineItem = ({
   data: ExperienceType | EducationType;
   type: "education" | "experience";
   index: number;
-  variants: any;
+  variants?: Variants;
 }) => {
   const isExperience = type === "experience";
   // Type guards or casting for specific fields
