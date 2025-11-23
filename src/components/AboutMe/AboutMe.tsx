@@ -174,8 +174,6 @@ export default function AboutMe() {
         <Experience
           experiences={experiences}
           education={education}
-          isLoading={isLoading}
-          titleVariants={titleVariants}
           cardVariants={cardVariants}
         />
 
