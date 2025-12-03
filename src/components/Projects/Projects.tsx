@@ -62,9 +62,15 @@ export default function Projects() {
   });
 
   const filteredProjects = useMemo(() => {
-    return activeFilter === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+    const filtered =
+      activeFilter === "all"
+        ? projects
+        : projects.filter((project) => project.category === activeFilter);
+
+    // Sort featured projects first, then limit to 9
+    return [...filtered]
+      .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+      .slice(0, 9);
   }, [projects, activeFilter]);
 
   // Convert all projects for modal navigation - properly memoized with stable keys
@@ -172,12 +178,23 @@ export default function Projects() {
                 >
                   <div className="relative">
                     {/* Project Image */}
-                    <div
-                      className={`h-56 ${project.imageClass}`}
-                      style={{
-                        backgroundColor: "var(--light-bg-color)", // Fallback color if image fails to load
-                      }}
-                    ></div>
+                    {project.thumbnail ? (
+                      <div className="h-56 overflow-hidden">
+                        <img
+                          src={project.thumbnail}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <div
+                        className={`h-56 ${project.imageClass}`}
+                        style={{
+                          backgroundColor: "var(--light-bg-color)",
+                        }}
+                      ></div>
+                    )}
                     {/* Featured Badge */}
                     {project.featured && (
                       <div className="absolute top-4 right-4 bg-primary text-dark px-3 py-1 rounded-full text-sm font-medium">

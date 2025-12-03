@@ -24,6 +24,8 @@ export interface Project {
   imageClass: string;
   imageUrl?: string;
   images?: string[];
+  imagesUrl?: string[];
+  thumbnail?: string;
   technologies: string[];
   category: string;
   link: string[];

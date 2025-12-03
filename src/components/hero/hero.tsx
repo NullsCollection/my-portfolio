@@ -47,8 +47,7 @@ export default function Hero() {
 
               {/* Description - Sixth Animation */}
               <p className="text-md max-w-2xl mx-auto lg:mx-0 text-secondary py-2 animate-fade-in animation-delay-1000">
-                Professional Web Developer and Graphic Designer specializing in
-                modern technologies
+               A professional Web Developer and Graphic Designer specializing in crafting immersive and functional web solutions.
               </p>
             </div>
 

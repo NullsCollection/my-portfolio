@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { isValidEmail, sanitizeString, checkRateLimit } from "@/lib/validation";
 
 type FormsfreeResponse = {
   success: boolean;
@@ -18,14 +19,42 @@ export default async function handler(
   }
 
   try {
-    const { name, email, subject, message } = req.body;
+    // Rate limiting - 5 requests per minute per IP
+    const clientIp =
+      (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim() ||
+      req.socket.remoteAddress ||
+      "unknown";
 
-    // Basic validation
+    const rateLimit = checkRateLimit(`contact:${clientIp}`, 5, 60000);
+
+    if (!rateLimit.allowed) {
+      return res.status(429).json({
+        success: false,
+        message: `Too many requests. Please try again in ${Math.ceil(
+          rateLimit.resetIn / 1000
+        )} seconds.`,
+      });
+    }
+
+    // Sanitize and extract input
+    const name = sanitizeString(req.body.name, 100);
+    const email = sanitizeString(req.body.email, 254);
+    const subject = sanitizeString(req.body.subject, 200);
+    const message = sanitizeString(req.body.message, 5000);
+
+    // Validation
     const errors: string[] = [];
     if (!name) errors.push("Name is required");
-    if (!email) errors.push("Email is required");
+    if (!email) {
+      errors.push("Email is required");
+    } else if (!isValidEmail(email)) {
+      errors.push("Please enter a valid email address");
+    }
     if (!subject) errors.push("Subject is required");
     if (!message) errors.push("Message is required");
+    if (message && message.length < 10) {
+      errors.push("Message must be at least 10 characters");
+    }
 
     if (errors.length > 0) {
       return res.status(400).json({
@@ -36,7 +65,7 @@ export default async function handler(
     }
 
     // Formsfree API endpoint
-    const formsfreeEndpoint = "https://formspree.io/f/xyzpkpvg"; // Replace with your Formsfree form ID
+    const formsfreeEndpoint = `${process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT}`; // Replace with your Formsfree form ID
 
     // Send data to Formsfree
     const formsfreeResponse = await fetch(formsfreeEndpoint, {
