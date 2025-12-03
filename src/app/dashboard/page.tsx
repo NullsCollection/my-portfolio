@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 import {
   useProjectData,
@@ -99,8 +100,10 @@ export default function DashboardPage() {
 
       // Refresh the page to show updated data
       window.location.reload();
-    } catch (error: any) {
-      alert(error.message || "Failed to delete project");
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Failed to delete project";
+      alert(message);
     }
   };
 
@@ -179,7 +182,7 @@ export default function DashboardPage() {
                     >
                       <td className="py-3 pr-4 hidden md:table-cell">
                         {project.thumbnail ? (
-                          <img
+                          <Image
                             src={project.thumbnail}
                             alt={project.title}
                             className="w-12 h-12 object-cover rounded-md"

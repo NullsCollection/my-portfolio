@@ -68,8 +68,10 @@ export default function RegisterPage() {
       setTimeout(() => {
         router.push("/login");
       }, 1500);
-    } catch (err: any) {
-      setError(err.message || "Registration failed");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Registration failed";
+      setError(message);
     } finally {
       setIsLoading(false);
     }
@@ -83,7 +85,7 @@ export default function RegisterPage() {
             Register Boss!!!
           </h1>
           <p className="text-secondary text-sm md:text-base">
-            Himo na'g account para makadumala ka sa imong mga proyekto sa
+            Himo na&apos;g account para makadumala ka sa imong mga proyekto sa
             dashboard… kay dili man ni siya manghimo ug kaugalingon.
           </p>
         </div>

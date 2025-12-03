@@ -108,8 +108,26 @@ export const useProjectData = (): UseProjectDataReturn => {
 
         const data = await res.json();
 
+        // Define the API response shape
+        interface ApiProject {
+          id: number;
+          title: string;
+          description?: string;
+          imageClass?: string;
+          imageUrl?: string;
+          imagesUrl?: string[];
+          images?: string[];
+          technologies?: string[];
+          category?: string;
+          link?: string[];
+          featured?: boolean;
+          githubUrl?: string;
+          demoUrl?: string;
+          thumbnail?: string;
+        }
+
         const mapped: Project[] = (Array.isArray(data) ? data : []).map(
-          (p: any) => ({
+          (p: ApiProject) => ({
             id: p.id,
             title: p.title,
             description: p.description ?? "",
@@ -137,7 +155,7 @@ export const useProjectData = (): UseProjectDataReturn => {
     };
 
     fetchProjects();
-  }, []);
+  }, [baseURL]);
 
   return {
     projects: projects.length > 0 ? projects : mockProjects,

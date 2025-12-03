@@ -94,8 +94,10 @@ export default function ProjectModal({
     try {
       await onSubmit(formData);
       onClose();
-    } catch (err: any) {
-      setError(err.message || "Failed to save project");
+    } catch (err) {
+      const message =
+        err instanceof Error ? err.message : "Failed to save project";
+      setError(message);
     } finally {
       setIsSubmitting(false);
     }
