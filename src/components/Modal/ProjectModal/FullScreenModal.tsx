@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { Project } from "@/types";
-import { getProjectImages } from "@/utils/projectImageLoader";
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -86,30 +85,13 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
     return null;
   }
 
-  // Create array of images for the current project
-  const getProjectImagesForModal = () => {
-    // First check if project has custom images defined
-    if (
-      currentProject &&
-      currentProject.images &&
-      currentProject.images.length > 0
-    ) {
-      return currentProject.images;
-    }
-
-    // Use the dynamic image loader based on project ID
-    if (currentProject) {
-      const dynamicImages = getProjectImages(currentProject.id);
-      if (dynamicImages.length > 0) {
-        return dynamicImages;
-      }
-    }
-
-    // Final fallback to project's main image or default
-    return [currentProject?.imageUrl || "/assets/common/placeholder.jpg"];
-  };
-
-  const projectImages = getProjectImagesForModal();
+  // Get images from database
+  const projectImages: string[] =
+    currentProject.images && currentProject.images.length > 0
+      ? currentProject.images
+      : currentProject.imageUrl
+      ? [currentProject.imageUrl]
+      : ["/assets/common/default.jpg"];
 
   const modalVariants = {
     hidden: {
@@ -235,7 +217,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                         priority={index === 0}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "/assets/common/placeholder.jpg";
+                          target.src = "/assets/common/default.jpg";
                         }}
                       />
                     </div>
@@ -263,6 +245,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                     </p>
                   </div>
 
+                  {/* TODO: Add this to data database */}
                   {/* Project Details */}
                   <div>
                     <h4 className="text-base md:text-lg font-semibold text-light mb-3 md:mb-4">

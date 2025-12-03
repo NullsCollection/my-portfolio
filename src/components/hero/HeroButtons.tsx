@@ -20,7 +20,7 @@ export default function HeroButtons() {
           icon="mdi:account"
           className="text-xl group-hover:rotate-12 transition-transform"
         />
-        View Portfolio
+        View Projects
       </button>
       <a
         href="/assets/Resume/RESUME-Raffy-francisco.pdf"

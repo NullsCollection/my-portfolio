@@ -78,40 +78,9 @@
 
 /* Project Images */
 .project-image-1 {
-  background-image: url("../common/Game.png");
+  background-image: url("../common/default.jpg");
   background-size: cover;
   background-position: center;
-}
-
-.project-image-2 {
-  background-image: url("../common/Monster.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-3 {
-  background-image: url("/assets/Projects/RRM/RRM.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-4 {
-  background-image: url("../common/Sora-travel.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-5 {
-  background-image: url("../common/Christmas.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-6 {
-  background-image: url("../common/Halloween.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 /* Hello There Button Image */
