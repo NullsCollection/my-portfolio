@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   useProjectData,
   Project as MockProject,
@@ -180,11 +181,13 @@ export default function Projects() {
                     {/* Project Image */}
                     {project.thumbnail ? (
                       <div className="h-56 overflow-hidden">
-                        <img
+                        <Image
                           src={project.thumbnail}
                           alt={project.title}
                           className="w-full h-full object-cover"
                           loading="lazy"
+                          width={500}
+                          height={500}
                         />
                       </div>
                     ) : (

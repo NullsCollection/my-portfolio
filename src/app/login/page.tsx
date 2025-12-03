@@ -39,12 +39,16 @@ export default function LoginPage() {
       setTimeout(() => {
         router.push("/dashboard");
       }, 1000);
-    } catch (err: any) {
+    } catch (err) {
       // Handle network errors vs API errors
-      if (err.name === "TypeError" || err.message.includes("JSON")) {
-        setError("Cannot connect to server. Is the backend running?");
+      if (err instanceof Error) {
+        if (err.name === "TypeError" || err.message.includes("JSON")) {
+          setError("Cannot connect to server. Is the backend running?");
+        } else {
+          setError(err.message || "Login failed");
+        }
       } else {
-        setError(err.message || "Login failed");
+        setError("Login failed");
       }
     } finally {
       setIsLoading(false);
