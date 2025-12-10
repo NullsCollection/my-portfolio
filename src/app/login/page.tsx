@@ -12,8 +12,6 @@ export default function LoginPage() {
   const [success, setSuccess] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const baseURL = process.env.NEXT_PUBLIC_API_URL;
-
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
@@ -21,10 +19,10 @@ export default function LoginPage() {
     setIsLoading(true);
 
     try {
-      const res = await fetch(`${baseURL}/auth/login`, {
+      // Use local API route to handle login and set cookie on same domain
+      const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // Important: allows cookies to be set
         body: JSON.stringify({ username, password }),
       });
 

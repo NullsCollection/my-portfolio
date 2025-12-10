@@ -13,7 +13,6 @@ import ProjectModal, {
 } from "@/components/Modal/Dashboard/ProjectModal";
 
 export default function DashboardPage() {
-  const baseURL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
   const { projects } = useProjectData();
   const totalProjects = projects.length;
@@ -50,15 +49,13 @@ export default function DashboardPage() {
   };
 
   const handleSubmitProject = async (data: ProjectFormData) => {
+    // Use local API routes to proxy requests with auth cookie
     const url =
-      modalMode === "add"
-        ? `${baseURL}/projects`
-        : `${baseURL}/projects/${data.id}`;
+      modalMode === "add" ? "/api/projects" : `/api/projects/${data.id}`;
 
     const res = await fetch(url, {
       method: modalMode === "add" ? "POST" : "PUT",
       headers: { "Content-Type": "application/json" },
-      credentials: "include",
       body: JSON.stringify({
         title: data.title,
         category: data.category,
@@ -88,9 +85,9 @@ export default function DashboardPage() {
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`${baseURL}/projects/${project.id}`, {
+      // Use local API route to proxy delete with auth cookie
+      const res = await fetch(`/api/projects/${project.id}`, {
         method: "DELETE",
-        credentials: "include",
       });
 
       if (!res.ok) {
@@ -110,9 +107,9 @@ export default function DashboardPage() {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      await fetch(`${baseURL}/auth/logout`, {
+      // Use local API route to clear cookie
+      await fetch("/api/auth/logout", {
         method: "POST",
-        credentials: "include",
       });
       router.push("/login");
     } catch (error) {
@@ -185,6 +182,8 @@ export default function DashboardPage() {
                           <Image
                             src={project.thumbnail}
                             alt={project.title}
+                            width={48}
+                            height={48}
                             className="w-12 h-12 object-cover rounded-md"
                           />
                         ) : (
