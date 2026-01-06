@@ -100,7 +100,7 @@ export const experiences: Experience[] = [
     title: "Web Developer     ",
     company: "KitCode",
     employmentType: "Full-time",
-    startDate: "March 2025",
+    startDate: "Jun 2025",
     endDate: "Present",
     duration: "11 mos",
     description:
@@ -113,7 +113,7 @@ export const experiences: Experience[] = [
     company: "Zeinous",
     employmentType: "Full-time",
     startDate: "Jul 2023",
-    endDate: "March 2025",
+    endDate: "Jun 2025",
     duration: "1 yr 7 mos",
     description:
       "Designing posters, banners, social media content, and seasonal-themed illustrations.",
