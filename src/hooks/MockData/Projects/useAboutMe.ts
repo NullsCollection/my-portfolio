@@ -100,7 +100,7 @@ export const experiences: Experience[] = [
     title: "Web Developer     ",
     company: "KitCode",
     employmentType: "Full-time",
-    startDate: "Jan 2025",
+    startDate: "Jun 2025",
     endDate: "Present",
     duration: "11 mos",
     description:

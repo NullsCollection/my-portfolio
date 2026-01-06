@@ -114,10 +114,10 @@ const TimelineItem = ({
 
       <div className="group relative bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-6 transition-all duration-300 backdrop-blur-sm">
         {/* Date Badge */}
-        {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
           <Icon icon="mdi:calendar" />
           {data.startDate} - {data.endDate}
-        </div> */}
+        </div>
 
         <h4 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
           {title}
