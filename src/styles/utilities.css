@@ -135,50 +135,6 @@
   z-index: 2;
 }
 
-.project-image-1 {
-  background-image: url("/assets/common/Game.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-2 {
-  background-image: url("/assets/common/Monster.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-3 {
-  background-image: url("/assets/Projects/RRM/RRM.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-4 {
-  background-image: url("/assets/common/Sora-travel.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-5 {
-  background-image: url("/assets/common/Christmas.jpg");
-  background-size: cover;
-  background-position: center;
-}
-
-.project-image-6 {
-  background-image: url("/assets/common/Halloween.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.project-image-7 {
-  background-image: url("/assets/Projects/Sonic/5.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .hello-btn-image {
   background-image: url("/assets/common/hello there btn.png");
   background-size: contain;

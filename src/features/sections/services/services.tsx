@@ -50,8 +50,8 @@ export default function Services() {
             className="text-lg text-secondary max-w-2xl mx-auto"
             variants={descriptionVariants}
           >
-            I offer a range of professional services to help bring your ideas to
-            life
+            End-to-end design and development services focused on solving real
+            user problems.
           </motion.p>
         </div>
 

@@ -119,7 +119,7 @@ const TimelineItem = ({
           {data.startDate} - {data.endDate}
         </div>
 
-        <h4 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
+        <h4 className="text-xl font-bold text-white mb-1 transition-colors">
           {title}
         </h4>
 

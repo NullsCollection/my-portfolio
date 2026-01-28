@@ -14,7 +14,7 @@ export const SERVICES: ServiceData[] = [
     icon: "mdi:web",
     title: "Web Development",
     description:
-      "Modern, responsive websites built with the latest technologies",
+      "Modern, responsive web applications built with React, TypeScript, and scalable frontend architecture.",
   },
   {
     icon: "mdi:palette",
@@ -30,7 +30,8 @@ export const SERVICES: ServiceData[] = [
   },
   {
     icon: "mdi:search-web",
-    title: "SEO Optimization",
-    description: "Improve your website's visibility and search engine rankings",
+    title: "Frontend Engineering",
+    description:
+      "Scalable UI systems with performance, accessibility, and maintainability in mind.",
   },
 ];

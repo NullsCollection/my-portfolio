@@ -3,6 +3,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { ProjectCardSkeleton } from "@/components/ui/SkeletonCard";
@@ -60,9 +61,20 @@ export default function Projects() {
   });
 
   const filteredProjects = useMemo(() => {
-    return activeFilter === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeFilter);
+    const items =
+      activeFilter === "all"
+        ? projects
+        : projects.filter((project) => project.category === activeFilter);
+
+    return items
+      .map((project, index) => ({ project, index }))
+      .sort((a, b) => {
+        const featuredA = a.project.featured ? 1 : 0;
+        const featuredB = b.project.featured ? 1 : 0;
+        if (featuredA !== featuredB) return featuredB - featuredA;
+        return a.index - b.index;
+      })
+      .map(({ project }) => project);
   }, [projects, activeFilter]);
 
   // Convert all projects for modal navigation - properly memoized with stable keys
@@ -171,11 +183,17 @@ export default function Projects() {
                   <div className="relative">
                     {/* Project Image */}
                     <div
-                      className={`h-56 ${project.imageClass}`}
-                      style={{
-                        backgroundColor: "var(--light-bg-color)", // Fallback color if image fails to load
-                      }}
-                    ></div>
+                      className="relative h-56 w-full"
+                      style={{ backgroundColor: "var(--light-bg-color)" }}
+                    >
+                      <Image
+                        src={project.imageSrc ?? "/assets/common/default.jpg"}
+                        alt={project.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
                     {/* Featured Badge */}
                     {project.featured && (
                       <div className="absolute top-4 right-4 bg-primary text-dark px-3 py-1 rounded-full text-sm font-medium">

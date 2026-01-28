@@ -23,7 +23,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
     ? projects.findIndex((p) => p.id === project.id)
     : -1;
   const [currentProjectIndex, setCurrentProjectIndex] = useState(
-    initialIndex >= 0 ? initialIndex : 0
+    initialIndex >= 0 ? initialIndex : 0,
   );
 
   // Calculate values that depend on project (with safe defaults)
@@ -80,6 +80,25 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [handlePrevProject, handleNextProject, onClose, isOpen]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    const originalPaddingRight = document.body.style.paddingRight;
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
+    document.body.style.overflow = "hidden";
+    if (scrollBarWidth > 0) {
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
+    }
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.paddingRight = originalPaddingRight;
+    };
+  }, [isOpen]);
 
   // Early return AFTER all hooks are declared
   if (!project || !currentProject) {
@@ -216,7 +235,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
             {/* Responsive Layout - Mobile: Stack, Desktop: Side-by-side */}
             <div className="flex flex-col lg:flex-row h-[calc(100vh-64px)] md:h-[calc(100vh-80px)]">
               {/* Image Gallery - Full width on mobile, left column on desktop */}
-              <div className="flex-1 lg:flex-[2] bg-black/20 overflow-y-auto relative h-1/2 lg:h-full">
+              <div className="flex-1 lg:flex-[2] bg-black/20 overflow-y-auto overscroll-contain relative h-1/2 lg:h-full">
                 <div className="seamless-gallery">
                   {/* Scrollable Image Gallery */}
                   {projectImages.map((image, index) => (
@@ -244,7 +263,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
               </div>
 
               {/* Content Panel - Full width on mobile, right column on desktop */}
-              <div className="w-full lg:w-96 bg-gradient-to-b from-light-bg-color to-light-bg-color/95 border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto h-1/2 lg:h-full">
+              <div className="w-full lg:w-96 bg-gradient-to-b from-light-bg-color to-light-bg-color/95 border-t lg:border-t-0 lg:border-l border-white/10 overflow-y-auto overscroll-contain h-1/2 lg:h-full">
                 {/* Project Header - Responsive padding */}
                 <div className="p-4 md:p-6 lg:p-8 space-y-4 md:space-y-6 lg:space-y-8">
                   {/* Project Header */}
@@ -274,7 +293,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                           Duration
                         </label>
                         <p className="text-sm md:text-base text-light font-medium">
-                          2-3 weeks
+                          {currentProject.duration ?? "2-3 weeks"}
                         </p>
                       </div>
                       <div>
@@ -282,7 +301,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                           Year
                         </label>
                         <p className="text-sm md:text-base text-light font-medium">
-                          2024
+                          {currentProject.year ?? "2024"}
                         </p>
                       </div>
                       <div>
@@ -290,7 +309,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                           Client
                         </label>
                         <p className="text-sm md:text-base text-light font-medium">
-                          Personal
+                          {currentProject.client ?? "Personal"}
                         </p>
                       </div>
                       <div>
@@ -298,7 +317,7 @@ const FullScreenModal: React.FC<ProjectModalProps> = ({
                           Status
                         </label>
                         <p className="text-sm md:text-base text-primary font-medium">
-                          Completed
+                          {currentProject.status ?? "Completed"}
                         </p>
                       </div>
                     </div>

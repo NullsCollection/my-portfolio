@@ -17,7 +17,7 @@ export default function Hero() {
             <div>
               {/* Availability Text - First Animation */}
               <p className="text-md max-w-2xl mx-auto text-secondary flex items-center justify-center lg:justify-start gap-2 animate-slide-in-left">
-                Available for Freelance/Fulltime World Wide.
+                Available for Freelance & Full-Time (Remote)
                 <Icon
                   icon="mdi:earth"
                   className="text-primary text-xl animate-pulse"
@@ -34,21 +34,22 @@ export default function Hero() {
                 </div>
               </div>
 
-              {/* Main Title - Fourth Animation */}
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-slide-in-left animation-delay-600">
-                Welcome to My
-                <span className="block mt-2 text-primary">Portfolio</span>
-              </h1>
-
               {/* Name - Fifth Animation */}
               <p className="text-lg md:text-xl lg:text-2xl mx-auto text-light flex items-center justify-center lg:justify-start gap-2 animate-fade-in-up animation-delay-800">
                 I&apos;m Raffy Francisco
               </p>
 
+              {/* Main Title - Fourth Animation */}
+              <h1 className="mt-2 text-primary text-4xl md:text-6xl lg:text-7xl font-bold mb-4 animate-slide-in-left animation-delay-600">
+                Web Developer &
+                <span className="block mt-4 text-white text-5xl">
+                  Graphic Designer
+                </span>
+              </h1>
               {/* Description - Sixth Animation */}
               <p className="text-md max-w-2xl mx-auto lg:mx-0 text-secondary py-2 animate-fade-in animation-delay-1000">
-                Professional Web Developer and Graphic Designer specializing in
-                modern technologies
+                Solving user experience problems through thoughtful design and
+                engineering
               </p>
             </div>
 
