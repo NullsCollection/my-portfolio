@@ -1,1 +1,1 @@
-export { default } from './NavBar';
+export { default } from "@/features/sections/navbar";
