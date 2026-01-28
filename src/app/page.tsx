@@ -1,12 +1,13 @@
-
-import NavBar from "../components/NavBar";
-import Hero from "../components/hero";
-import Footer from "../components/Footer";
-import Services from "../components/Services";
-import Projects from "../components/Projects";
-import AboutMe from "../components/AboutMe";
-import FAQ from "../components/FAQ/FAQ";
-import Contact from "../components/Contact/Contact";
+import {
+  AboutMe,
+  Contact,
+  FAQ,
+  Footer,
+  Hero,
+  NavBar,
+  Projects,
+  Services,
+} from "@/features";
 
 export default function Home() {
   return (

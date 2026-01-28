@@ -11,6 +11,9 @@ const PROJECT_FOLDER_MAP: Record<number, string> = {
   4: "RRM",
   5: "Christmas",
   6: "Halloween",
+  7: "Sonic",
+  8: "Logo",
+  9: "RealState",
 };
 
 // Define known images for each project folder
@@ -39,6 +42,9 @@ const PROJECT_IMAGES: Record<string, string[]> = {
   RRM: ["rrm-details.png"],
   Christmas: ["1.jpg", "UI-Christmas.jpg"],
   Halloween: ["1.jpg", "2.jpg", "H-1.jpg", "3.jpg", "6.jpg", "7.jpg", "5.jpg"],
+  Sonic: ["1.jpg", "3.jpg", "5.jpg", "7.jpg"],
+  Logo: ["1.jpg", "2.jpg", "3.jpg", "5.png", "4.jpg"],
+  RealState: ["3.png", "1.png", "2.png", "4.png", "5.png"],
 };
 
 /**
@@ -64,7 +70,7 @@ export const getProjectImages = (projectId: number | string): string[] => {
 
   // Convert to full public URLs
   return images.map(
-    (imageName) => `/assets/Projects/${folderName}/${imageName}`
+    (imageName) => `/assets/Projects/${folderName}/${imageName}`,
   );
 };
 

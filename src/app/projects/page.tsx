@@ -5,11 +5,12 @@ import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
-import { useGalleryData } from "@/hooks/MockData/Projects/useGalleryData";
+import { GALLERY_IMAGES } from "@/data/gallery";
 
 export default function AllProjectsPage() {
   const [isClient, setIsClient] = useState(false);
-  const { images: allProjectImages, totalCount } = useGalleryData();
+  const allProjectImages = GALLERY_IMAGES;
+  const totalCount = GALLERY_IMAGES.length;
 
   const {
     sectionVariants,
