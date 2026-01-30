@@ -2,31 +2,28 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import { Icon } from "@iconify/react";
-import {
-  Experience as ExperienceType,
-  Education as EducationType,
-} from "@/types";
+import { Experience as ExperienceType, Specialization } from "@/types";
 
 interface ExperienceProps {
   experiences: ExperienceType[];
-  education: EducationType[];
+  specializations: Specialization[];
   cardVariants?: Variants;
 }
 
 export function Experience({
   experiences,
-  education,
+  specializations,
   cardVariants,
 }: ExperienceProps) {
   return (
     <motion.div className="my-16" variants={cardVariants}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Education Column */}
+        {/* Specialization Column */}
         <Column
-          title="Education"
-          icon="mdi:school"
-          items={education}
-          type="education"
+          title="Specializations"
+          icon="mdi:star-circle"
+          items={specializations}
+          type="specialization"
           variants={cardVariants}
         />
 
@@ -52,8 +49,8 @@ const Column = ({
 }: {
   title: string;
   icon: string;
-  items: (ExperienceType | EducationType)[];
-  type: "education" | "experience";
+  items: (ExperienceType | Specialization)[];
+  type: "specialization" | "experience";
   variants?: Variants;
 }) => {
   return (
@@ -86,20 +83,26 @@ const TimelineItem = ({
   index,
   variants,
 }: {
-  data: ExperienceType | EducationType;
-  type: "education" | "experience";
+  data: ExperienceType | Specialization;
+  type: "specialization" | "experience";
   index: number;
   variants?: Variants;
 }) => {
   const isExperience = type === "experience";
+  const isSpecialization = type === "specialization";
+
   // Type guards or casting for specific fields
   const title = isExperience
     ? (data as ExperienceType).title
-    : (data as EducationType).institution;
+    : (data as Specialization).title;
   const subtitle = isExperience
     ? (data as ExperienceType).company
-    : (data as EducationType).degree;
-  const skills = isExperience ? (data as ExperienceType).skills : [];
+    : (data as Specialization).area;
+  const skills = isExperience
+    ? (data as ExperienceType).skills
+    : isSpecialization
+      ? (data as Specialization).skills || []
+      : [];
   const location = isExperience ? (data as ExperienceType).location : null;
 
   return (
@@ -113,11 +116,13 @@ const TimelineItem = ({
       <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark border-2 border-primary shadow-[0_0_10px_rgba(1,194,178,0.5)]" />
 
       <div className="group relative bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl p-6 transition-all duration-300 backdrop-blur-sm">
-        {/* Date Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
-          <Icon icon="mdi:calendar" />
-          {data.startDate} - {data.endDate}
-        </div>
+        {/* Date Badge - Only show for experience */}
+        {isExperience && (
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-medium mb-4">
+            <Icon icon="mdi:calendar" />
+            {data.startDate} - {data.endDate}
+          </div>
+        )}
 
         <h4 className="text-xl font-bold text-white mb-1 transition-colors">
           {title}
@@ -144,7 +149,7 @@ const TimelineItem = ({
             {skills.map((skill, i) => (
               <span
                 key={i}
-                className="px-2 py-1 text-xs rounded-md bg-white/5 text-secondary border border-white/10 hover:border-primary/30 hover:text-primary transition-colors"
+                className="px-2 py-1 text-xs rounded-md bg-white/5 text-secondary border border-white/10 hover:border-primary/30 hover:text-primary transition-colors cursor-pointer"
               >
                 {skill}
               </span>

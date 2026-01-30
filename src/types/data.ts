@@ -78,6 +78,16 @@ export interface Education {
   description?: string;
 }
 
+export interface Specialization {
+  id: string;
+  title: string;
+  area: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  skills?: string[];
+}
+
 export interface Achievement {
   id: string;
   number: string;

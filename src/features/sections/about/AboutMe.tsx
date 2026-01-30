@@ -7,7 +7,12 @@ import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
 import { Skills } from "./Skills";
 import { Achievements } from "./Achievements";
 import { Experience } from "./Experience";
-import { SKILLS, DEVOPS_SKILLS, EXPERIENCES, EDUCATION } from "@/data/skills";
+import {
+  SKILLS,
+  DEVOPS_SKILLS,
+  EXPERIENCES,
+  SPECIALIZATIONS,
+} from "@/data/skills";
 import { ACHIEVEMENTS } from "@/data/achievements";
 
 export default function AboutMe() {
@@ -168,7 +173,7 @@ export default function AboutMe() {
         {/* Experience Section */}
         <Experience
           experiences={EXPERIENCES}
-          education={EDUCATION}
+          specializations={SPECIALIZATIONS}
           cardVariants={cardVariants}
         />
 

@@ -3,7 +3,7 @@
  * Contains skill information and categories
  */
 
-import { SkillCard, Experience, Education } from "@/types";
+import { SkillCard, Experience, Specialization } from "@/types";
 
 export const SKILLS: SkillCard[] = [
   { name: "React", level: 95, icon: "logos:react", category: "Frontend" },
@@ -105,26 +105,50 @@ export const EXPERIENCES: Experience[] = [
   },
 ];
 
-export const EDUCATION: Education[] = [
+export const SPECIALIZATIONS: Specialization[] = [
   {
     id: "1",
-    institution: "Mindoro State College - Bongbong, Oriental Mindoro",
-    degree: "Bachelor of Science in Information Technology",
-    startDate: "2015",
-    endDate: "2019",
+    title: "Visual & Graphic Design",
+    area: "Design",
+    startDate: "2019",
+    endDate: "Present",
+    description:
+      "Adobe Illustrator expertise – creating 3D Vector-style illustrations, flat and vector illustrations, icons, and logo designs.",
+    skills: [
+      "Adobe Illustrator",
+      "3D Vector Illustrations",
+      "Vector Design",
+      "Logo Design",
+    ],
   },
   {
     id: "2",
-    institution: "Dayhagan National High School",
-    degree: "Highschool",
-    startDate: "2011",
-    endDate: "2015",
+    title: "UI / UX Design",
+    area: "Web & Mobile Design",
+    startDate: "2020",
+    endDate: "Present",
+    description:
+      "Web & mobile UI design – designing complete web applications and mobile app interfaces using Figma. ",
+    skills: ["Figma", "Web UI Design", "Mobile UI Design", "Design Systems"],
   },
   {
     id: "3",
-    institution: "Roxas Central School",
-    degree: "Elementary",
-    startDate: "1996",
-    endDate: "2004",
+    title: "Frontend Development",
+    area: "Development",
+    startDate: "2021",
+    endDate: "Present",
+    description:
+      "Modern frontend development – building responsive interfaces using React, TypeScript, and Tailwind CSS.",
+    skills: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
+  },
+  {
+    id: "4",
+    title: "Technical Awareness",
+    area: "Supporting Skills",
+    startDate: "2022",
+    endDate: "Present",
+    description:
+      "Backend exposure – experience working with Go for understanding APIs, data flow, and system integration. ",
+    skills: ["Go", "REST APIs", "PostgreSQL"],
   },
 ];
