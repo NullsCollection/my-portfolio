@@ -8,7 +8,7 @@ type FormsfreeResponse = {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<FormsfreeResponse>
+  res: NextApiResponse<FormsfreeResponse>,
 ) {
   // Only allow POST requests
   if (req.method !== "POST") {
@@ -36,7 +36,7 @@ export default async function handler(
     }
 
     // Formsfree API endpoint
-    const formsfreeEndpoint = "https://formspree.io/f/xyzpkpvg"; // Replace with your Formsfree form ID
+    const formsfreeEndpoint = `${process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT}`;
 
     // Send data to Formsfree
     const formsfreeResponse = await fetch(formsfreeEndpoint, {
