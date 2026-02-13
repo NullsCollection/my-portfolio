@@ -12,12 +12,12 @@ export const siteConfig = {
     template: "%s | Raffy Francisco Portfolio",
   },
   description:
-    "Professional Full-Stack Developer and Graphic Designer specializing in React, Next.js, TypeScript, and modern web technologies. Creating beautiful, responsive websites and mobile applications. Available for freelance projects and full-time opportunities worldwide.",
+    "Frontend Developer and Graphic Designer specializing in React, Next.js, TypeScript, Tailwind, and modern UI/UX design. I create scalable, responsive web applications and visually polished digital experiences, combining strong frontend engineering with professional design skills. Available for remote freelance and full-time opportunities worldwide.",
   url: "https://raffy-francisco.vercel.app/",
   ogImage: "/og-image.jpg",
   keywords: [
     "Raffy Francisco",
-    "Full-Stack Developer",
+    "Frontend Developer",
     "Web Developer",
     "Graphic Designer",
     "React Developer",
@@ -25,7 +25,7 @@ export const siteConfig = {
     "TypeScript",
     "JavaScript",
     "Frontend Developer",
-    "Backend Developer",
+    "Tailwind",
     "UI/UX Designer",
     "Portfolio",
     "Freelance Developer",
