@@ -10,7 +10,7 @@ export default function Hero() {
     >
       <div className="container mx-auto max-w-6xl px-6 py-8">
         {/* Two Column Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="mt-8 lg:mt-0 grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-12 items-center">
           {/* Left Column - Welcome Message & Action Buttons */}
           <div className="text-center lg:text-left space-y-8">
             {/* Welcome Message */}

@@ -47,7 +47,7 @@ export default function Services() {
             My Services
           </motion.h2>
           <motion.p
-            className="text-lg text-secondary max-w-2xl mx-auto"
+            className="text-sm md:text-lg text-secondary max-w-2xl mx-auto"
             variants={descriptionVariants}
           >
             End-to-end design and development services focused on solving real

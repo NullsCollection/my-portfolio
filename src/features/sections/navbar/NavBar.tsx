@@ -13,6 +13,9 @@ export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const desktopSplitIndex = Math.ceil(NAV_ITEMS.length / 2);
+  const desktopLeftItems = NAV_ITEMS.slice(0, desktopSplitIndex);
+  const desktopRightItems = NAV_ITEMS.slice(desktopSplitIndex);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -51,7 +54,7 @@ export default function NavBar() {
       <div className="w-full mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Left Section - Mobile/Small Tablet Brand */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => handleNavClick("home")}
               className="font-bold text-xl sm:text-2xl text-primary transition-colors duration-300"
@@ -88,81 +91,55 @@ export default function NavBar() {
             </a>
           </div>
 
-          {/* Desktop/Tablet Navigation */}
-          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
-            <button
-              onClick={() => handleNavClick("home")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "home" ? "text-primary" : "text-light"
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => handleNavClick("services")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "services" ? "text-primary" : "text-light"
-              }`}
-            >
-              Services
-            </button>
-            <button
-              onClick={() => handleNavClick("projects")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "projects" ? "text-primary" : "text-light"
-              }`}
-            >
-              Projects
-            </button>
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-4 lg:space-x-8">
+            {desktopLeftItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                  activeSection === item.id ? "text-primary" : "text-light"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+
             <button
               onClick={() => handleNavClick("home")}
               className="font-bold text-2xl text-primary transform hover:scale-105 transition-all duration-300"
             >
               {siteConfig.brandName}
             </button>
-            <button
-              onClick={() => handleNavClick("about")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "about" ? "text-primary" : "text-light"
-              }`}
-            >
-              About
-            </button>
-            <button
-              onClick={() => handleNavClick("faq")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "faq" ? "text-primary" : "text-light"
-              }`}
-            >
-              FAQ
-            </button>
-            <button
-              onClick={() => handleNavClick("contact")}
-              className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
-                activeSection === "contact" ? "text-primary" : "text-light"
-              }`}
-            >
-              Contact
-            </button>
+
+            {desktopRightItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`font-light hover:text-primary transform hover:scale-105 transition-all duration-300 ${
+                  activeSection === item.id ? "text-primary" : "text-light"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
           </div>
 
           {/* Right Section */}
-          <div className="hidden lg:flex items-center space-x-2">
-            <div className="transform hover:scale-110 transition-all duration-300 cursor-pointer">
-              <Icon
-                icon={socialLinks.email.icon}
-                onClick={() =>
-                  window.open(socialLinks.email.composeUrl, "_blank")
-                }
-                className="text-5xl bg-light hover:text-primary transition-colors duration-300 p-2 rounded-full cursor-pointer"
-              />
-            </div>
+          <div className="hidden lg:block transform hover:scale-110 transition-all duration-300 cursor-pointer">
+            <Icon
+              icon={socialLinks.email.icon}
+              onClick={() =>
+                window.open(socialLinks.email.composeUrl, "_blank")
+              }
+              className="text-5xl bg-light hover:text-primary transition-colors duration-300 p-2 rounded-full cursor-pointer"
+            />
           </div>
 
           {/* Mobile/Tablet Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-light hover:text-primary transition-all duration-300 hover:scale-110"
+            className="lg:hidden text-light hover:text-primary transition-all duration-300 hover:scale-110"
             aria-label="Toggle menu"
           >
             <Icon
@@ -176,61 +153,24 @@ export default function NavBar() {
 
         {/* Mobile/Tablet Navigation */}
         <div
-          className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+          className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden ${
             isMenuOpen
               ? "h-auto max-h-[80vh] opacity-100"
               : "h-0 max-h-0 opacity-0"
           }`}
         >
           <div className="pt-4 pb-2 space-y-2 sm:space-y-3 animate-fadeIn">
-            <button
-              onClick={() => handleNavClick("home")}
-              className={`block w-full text-left hover:text-primary transition-all duration-300 py-2 ${
-                activeSection === "home" ? "text-primary" : "text-light"
-              }`}
-            >
-              Home
-            </button>
-            <button
-              onClick={() => handleNavClick("services")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
-                activeSection === "services" ? "text-primary" : "text-light"
-              }`}
-            >
-              Services
-            </button>
-            <button
-              onClick={() => handleNavClick("projects")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
-                activeSection === "projects" ? "text-primary" : "text-light"
-              }`}
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => handleNavClick("about")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
-                activeSection === "about" ? "text-primary" : "text-light"
-              }`}
-            >
-              About
-            </button>
-            <button
-              onClick={() => handleNavClick("faq")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
-                activeSection === "faq" ? "text-primary" : "text-light"
-              }`}
-            >
-              FAQ
-            </button>
-            <button
-              onClick={() => handleNavClick("contact")}
-              className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
-                activeSection === "contact" ? "text-primary" : "text-light"
-              }`}
-            >
-              Contact
-            </button>
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.id)}
+                className={`block w-full text-left font-light hover:text-primary transition-all duration-300 py-2 ${
+                  activeSection === item.id ? "text-primary" : "text-light"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
 
             {/* Mobile/Tablet Social Icons */}
             <div className="flex items-left justify-left sm:justify-start space-x-4 sm:space-x-6 pt-4 mt-4 border-t border-light-blue transition-all duration-300">
