@@ -70,19 +70,19 @@ export const DEVOPS_SKILLS: SkillCard[] = [
 export const EXPERIENCES: Experience[] = [
   {
     id: "1",
-    title: "Web Developer     ",
+    title: "Web Designer/Developer - Freelance",
     company: "KitCode",
     employmentType: "Full-time",
     startDate: "Jan 2025",
     endDate: "Present",
     duration: "11 mos",
     description:
-      "Creating responsive and user-friendly websites using React and TypeScript.",
+      "Creating responsive and user-friendly websites using React + Vite + TypeScript.",
     skills: ["Web Development", "Front-End Development"],
   },
   {
     id: "2",
-    title: "Graphic Designer",
+    title: "Graphic Designer - Full-time",
     company: "Zeinous",
     employmentType: "Full-time",
     startDate: "Jul 2023",
@@ -94,7 +94,7 @@ export const EXPERIENCES: Experience[] = [
   },
   {
     id: "3",
-    title: "Graphic Designer",
+    title: "Graphic Designer - Full-time",
     company: "BGK Printing Services",
     employmentType: "Full-time",
     startDate: "Aug 2021",

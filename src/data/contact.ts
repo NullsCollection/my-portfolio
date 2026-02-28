@@ -15,13 +15,13 @@ export const CONTACT_METHODS: ContactMethod[] = [
     action: () =>
       window.open(
         "https://www.linkedin.com/in/raffy-francisco-50607b325/",
-        "_blank"
+        "_blank",
       ),
   },
   {
     icon: "simple-icons:behance",
     action: () =>
-      window.open("https://www.behance.net/raffyfrancisco", "_blank"),
+      window.open("https://www.behance.net/nullzvectcollection", "_blank"),
   },
   {
     icon: "mdi:github",
