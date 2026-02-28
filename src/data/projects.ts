@@ -8,6 +8,7 @@ export const PROJECT_CATEGORIES = {
   WEB: "web",
   DESIGN: "design",
   MOBILE: "mobile",
+  OTHERS: "others",
 } as const;
 
 export type ProjectCategory =
@@ -18,6 +19,7 @@ export const PROJECT_FILTERS = [
   { id: "web", label: "Web Development" },
   { id: "design", label: "Graphic Design" },
   { id: "mobile", label: "Mobile Apps" },
+  { id: "others", label: "Others" },
 ];
 
 export interface ProjectData {
@@ -80,7 +82,7 @@ export const PROJECTS: ProjectData[] = [
     featured: true,
     duration: "2-3 weeks",
     year: "2024",
-    client: "Personal",
+    client: "Confidential",
     status: "Completed",
   },
   {
@@ -122,7 +124,7 @@ export const PROJECTS: ProjectData[] = [
     description:
       "A fully editable illustration project with a vector design, featuring detailed character models, custom color palettes, and ready-to-use assets.",
     link: ["#"],
-    featured: false,
+    featured: true,
     duration: "1-2 weeks",
     year: "2024",
     client: "Personal",
@@ -152,9 +154,9 @@ export const PROJECTS: ProjectData[] = [
     description: "Sepak Takraw Logo Design - Local Pilipino Team ",
     link: ["#"],
     featured: true,
-    duration: "1-2 weeks",
+    duration: "1 week",
     year: "2025",
-    client: "Client",
+    client: "Mc Janver",
     status: "Completed",
   },
   {
@@ -166,9 +168,24 @@ export const PROJECTS: ProjectData[] = [
     description:
       "A modern real estate landing page designed in Figma, created to capture leads and showcase featured properties with a clean and user-friendly layout. The design focuses on strong visual hierarchy, clear messaging, and a high-converting call-to-action.",
     link: ["#"],
-    featured: false,
+    featured: true,
     duration: "2-3 weeks",
     year: "2025",
+    client: "Personal",
+    status: "Completed",
+  },
+  {
+    id: 10,
+    title: "n8n automations, AI agents and smart Business workflows",
+    category: "others",
+    imageSrc: "/assets/Projects/n8n/n8n-01.png",
+    technologies: ["n8n", "Automations", "Business", "AI"],
+    description:
+      "A smart automation system built with n8n and AI agents to streamline business workflows, automate repetitive tasks, and improve productivity through intelligent process optimization.",
+    link: ["#"],
+    featured: true,
+    duration: "3 - 7 days",
+    year: "2026",
     client: "Personal",
     status: "Completed",
   },

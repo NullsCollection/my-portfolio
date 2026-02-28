@@ -12,6 +12,7 @@ import { Project } from "@/types";
 import { PROJECTS, PROJECT_FILTERS, type ProjectData } from "@/data/projects";
 
 export default function Projects() {
+  const MAX_PROJECTS = 9;
   const [isClient, setIsClient] = useState(false);
 
   const [activeFilter, setActiveFilter] = useState<string>("all");
@@ -74,7 +75,8 @@ export default function Projects() {
         if (featuredA !== featuredB) return featuredB - featuredA;
         return a.index - b.index;
       })
-      .map(({ project }) => project);
+      .map(({ project }) => project)
+      .slice(0, MAX_PROJECTS);
   }, [projects, activeFilter]);
 
   // Convert all projects for modal navigation - properly memoized with stable keys

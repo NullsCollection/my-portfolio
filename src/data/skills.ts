@@ -47,12 +47,12 @@ export const SKILLS: SkillCard[] = [
 ];
 
 export const DEVOPS_SKILLS: SkillCard[] = [
-  {
-    name: "Docker",
-    level: 85,
-    icon: "logos:docker-icon",
-    category: "DevOps",
-  },
+  // {
+  //   name: "Docker",
+  //   level: 85,
+  //   icon: "logos:docker-icon",
+  //   category: "DevOps",
+  // },
   {
     name: "Git",
     level: 90,
