@@ -29,9 +29,9 @@ export const SERVICES: ServiceData[] = [
       "Creating beautiful mobile app interfaces and seamless user experiences.",
   },
   {
-    icon: "mdi:search-web",
-    title: "Frontend Engineering",
+    icon: "mdi:robot-outline",
+    title: "Automation & Web Hosting",
     description:
-      "Scalable UI systems with performance, accessibility, and maintainability in mind.",
+      "Workflow automation and reliable web hosting setup to keep your business running smoothly and securely.",
   },
 ];

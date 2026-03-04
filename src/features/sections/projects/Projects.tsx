@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Icon } from "@iconify/react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
 import { useScrollAnimation } from "@/hooks/ScrollAnimation/useScrollAnimation";
 import { useSimulatedLoading } from "@/hooks/ScrollAnimation/useLoadingState";
@@ -16,6 +15,7 @@ export default function Projects() {
   const [isClient, setIsClient] = useState(false);
 
   const [activeFilter, setActiveFilter] = useState<string>("all");
+  const [showAll, setShowAll] = useState(false);
   const projects = PROJECTS;
   const filterOptions = PROJECT_FILTERS;
 
@@ -24,6 +24,10 @@ export default function Projects() {
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeFilter]);
 
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -61,7 +65,7 @@ export default function Projects() {
     direction: "up",
   });
 
-  const filteredProjects = useMemo(() => {
+  const sortedFilteredProjects = useMemo(() => {
     const items =
       activeFilter === "all"
         ? projects
@@ -75,13 +79,18 @@ export default function Projects() {
         if (featuredA !== featuredB) return featuredB - featuredA;
         return a.index - b.index;
       })
-      .map(({ project }) => project)
-      .slice(0, MAX_PROJECTS);
+      .map(({ project }) => project);
   }, [projects, activeFilter]);
+
+  const displayedProjects = useMemo(() => {
+    return showAll
+      ? sortedFilteredProjects
+      : sortedFilteredProjects.slice(0, MAX_PROJECTS);
+  }, [sortedFilteredProjects, showAll]);
 
   // Convert all projects for modal navigation - properly memoized with stable keys
   const convertedProjects: Project[] = useMemo(() => {
-    return filteredProjects.map((project) => ({
+    return displayedProjects.map((project) => ({
       ...project,
       id: project.id.toString(),
       // Ensure all required properties are present
@@ -89,7 +98,7 @@ export default function Projects() {
         project.imageUrl || `/assets/Projects/project-${project.id}/main.jpg`,
       images: project.images || [],
     }));
-  }, [filteredProjects]);
+  }, [displayedProjects]);
 
   if (!isClient) {
     return (
@@ -170,7 +179,7 @@ export default function Projects() {
               Array.from({ length: 6 }).map((_, index) => (
                 <ProjectCardSkeleton key={`skeleton-${index}`} />
               ))
-            : filteredProjects.map((project) => (
+            : displayedProjects.map((project) => (
                 <motion.div
                   key={project.id}
                   className="bg-light rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:transform hover:scale-105 cursor-pointer"
@@ -235,7 +244,7 @@ export default function Projects() {
                       }}
                       className="inline-flex items-center text-primary hover:text-primary-light transition-colors duration-300"
                     >
-                      View Project
+                      Read More
                       <Icon icon="mdi:arrow-right" className="ml-1" />
                     </button>
                   </div>
@@ -252,12 +261,14 @@ export default function Projects() {
           exit="exit"
           viewport={viewportOptions}
         >
-          <Link href="/projects">
-            <button className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:border-primary hover:text-primary">
-              View All Projects
-              <Icon icon="mdi:arrow-right" className="text-xl" />
-            </button>
-          </Link>
+          <button
+            type="button"
+            onClick={() => setShowAll((prev) => !prev)}
+            className="inline-flex items-center gap-2 border border-secondary text-secondary font-medium px-8 py-3 rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:text-primary"
+          >
+            {showAll ? "View Less" : "View All Projects"}
+            <Icon icon="mdi:arrow-right" className="text-xl" />
+          </button>
         </motion.div>
       </div>
 

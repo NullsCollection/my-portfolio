@@ -9,13 +9,13 @@ export const SKILLS: SkillCard[] = [
   { name: "React", level: 95, icon: "logos:react", category: "Frontend" },
   {
     name: "TypeScript",
-    level: 80,
+    level: 75,
     icon: "logos:typescript-icon",
     category: "Frontend",
   },
   {
     name: "Next.js",
-    level: 88,
+    level: 80,
     icon: "logos:nextjs-icon",
     category: "Frontend",
   },
@@ -27,7 +27,7 @@ export const SKILLS: SkillCard[] = [
   },
   {
     name: "Photoshop",
-    level: 90,
+    level: 80,
     icon: "vscode-icons:file-type-photoshop",
     category: "Design",
   },
@@ -47,12 +47,12 @@ export const SKILLS: SkillCard[] = [
 ];
 
 export const DEVOPS_SKILLS: SkillCard[] = [
-  // {
-  //   name: "Docker",
-  //   level: 85,
-  //   icon: "logos:docker-icon",
-  //   category: "DevOps",
-  // },
+  {
+    name: "Digital Ocean",
+    level: 70,
+    icon: "logos:digital-ocean",
+    category: "DevOps",
+  },
   {
     name: "Git",
     level: 90,
