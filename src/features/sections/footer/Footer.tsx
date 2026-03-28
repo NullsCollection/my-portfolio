@@ -50,6 +50,7 @@ export default function Footer() {
     { label: "Services", href: "/#services" },
     { label: "Projects", href: "/#projects" },
     { label: "Contact", href: "/#contact" },
+    { label: "Privacy Policy", href: "/privacy-policy" },
   ];
 
   return (
