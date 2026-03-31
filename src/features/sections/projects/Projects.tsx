@@ -74,9 +74,17 @@ export default function Projects() {
     return items
       .map((project, index) => ({ project, index }))
       .sort((a, b) => {
+        // First priority: Featured projects
         const featuredA = a.project.featured ? 1 : 0;
         const featuredB = b.project.featured ? 1 : 0;
         if (featuredA !== featuredB) return featuredB - featuredA;
+
+        // Second priority: Web development category
+        const isWebA = a.project.category === "web" ? 1 : 0;
+        const isWebB = b.project.category === "web" ? 1 : 0;
+        if (isWebA !== isWebB) return isWebB - isWebA;
+
+        // Third priority: Original index
         return a.index - b.index;
       })
       .map(({ project }) => project);

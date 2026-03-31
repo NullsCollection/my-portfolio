@@ -68,28 +68,24 @@ export default function AboutMe() {
                 className="text-2xl md:text-3xl font-bold text-dark mb-4"
                 variants={titleVariants}
               >
-                Hi, I&apos;m a Creative Developer
+                Frontend Developer with a strong UI/UX foundation
               </motion.h3>
 
               <motion.p
                 className="text-secondary leading-relaxed"
                 variants={descriptionVariants}
               >
-                I&apos;m a passionate Web Developer and Graphic Designer with
-                over 4 years of experience creating digital solutions that
-                combine beautiful design with robust functionality. I specialize
-                in frontend development, modern web technologies, and 3D vector
-                illustration with a keen eye for detail.
-              </motion.p>
-
-              <motion.p
-                className="text-secondary leading-relaxed"
-                variants={descriptionVariants}
-              >
-                My journey in tech started with a curiosity about how things
-                work, and it has evolved into a career where I get to build
-                amazing products that make a difference. I love collaborating
-                with teams and turning ideas into reality.
+                I’m a frontend developer focused on building responsive,
+                scalable, and user-friendly web interfaces using React,
+                TypeScript, and modern UI frameworks. With a background in UI/UX
+                design, I bring a strong understanding of layout, usability, and
+                visual consistency — allowing me to bridge the gap between
+                design and development and deliver end-to-end features with
+                minimal handoff. In my current role, I work on real-world
+                systems, including admin dashboards, form-heavy interfaces, and
+                responsive layouts, improving usability and performance across
+                devices. I enjoy solving complex UI problems, building reusable
+                components, and creating clean, maintainable code that scales.
               </motion.p>
 
               {/* Personal Info */}

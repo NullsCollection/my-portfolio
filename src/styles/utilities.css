@@ -101,6 +101,81 @@
   background-repeat: no-repeat;
 }
 
+/* ── ProfileCircle ──────────────────────────────────────── */
+.profile-circle-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 400px;
+}
+
+@media (min-width: 1024px) {
+  .profile-circle-wrapper {
+    min-height: 500px;
+  }
+}
+
+/* Glowing border ring. overflow: visible lets chips spill outside. */
+.profile-circle-ring {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 3px solid #01c2b2;
+  box-shadow:
+    0 0 20px rgba(1, 194, 178, 0.55),
+    0 0 50px rgba(1, 194, 178, 0.25),
+    0 0 90px rgba(1, 194, 178, 0.1);
+  overflow: visible;
+}
+
+@media (min-width: 1024px) {
+  .profile-circle-ring {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* Clipping container for the profile photo */
+.profile-circle-image {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* Floating role chip */
+.profile-chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(15, 20, 40, 0.82);
+  border: 1px solid rgba(1, 194, 178, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #e2e8f0;
+  font-size: 0.72rem;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+  animation: chipFloat 3.2s ease-in-out infinite;
+  /* Ensure chips sit above the image */
+  z-index: 10;
+}
+
+@keyframes chipFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
 .fade-image-bg img {
   display: block;
   width: 100%;
@@ -150,7 +225,7 @@
 }
 
 .aboutMe-image {
-  background-image: url("/assets/Profile.png");
+  background-image: url("/assets/common/1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import HeroButtons from "./HeroButtons";
+import ProfileCircle from "./ProfileCircle";
 
 export default function Hero() {
   return (
@@ -48,8 +49,9 @@ export default function Hero() {
               </h1>
               {/* Description - Sixth Animation */}
               <p className="text-md max-w-2xl mx-auto lg:mx-0 text-secondary py-2 animate-fade-in animation-delay-1000">
-                Solving user experience problems through thoughtful design and
-                engineering
+                I design and build responsive, high-performance web interfaces —
+                combining strong UI/UX thinking with clean, scalable frontend
+                development.
               </p>
             </div>
 
@@ -57,19 +59,15 @@ export default function Hero() {
             <HeroButtons />
           </div>
 
-          {/* Right Column - Profile Image */}
-          <div className="flex justify-center items-center h-full">
-            <div className="w-full h-full relative">
-              {/* Profile Image - Eighth Animation */}
-              <div className="profile-image w-full h-full min-h-[400px] lg:min-h-[500px] animate-slide-in-right animation-delay-600">
-                {/* Profile image is loaded via CSS background from base.css */}
-              </div>
+          {/* Right Column - Profile Circle */}
+          <div className="flex justify-center items-center h-full relative">
+            {/* Profile circle with floating chips — customise chips prop to change labels/positions */}
+            <ProfileCircle />
 
-              {/* Floating Experience Button - Ninth Animation */}
-              <div className="absolute bottom-4 right-4 animate-fade-in-up animation-delay-1000">
-                <div className="exp-floating-btn w-16 h-16 lg:w-20 lg:h-20 hover:scale-110 transition-transform duration-300 cursor-pointer animate-bounce">
-                  {/* Experience button image loaded via CSS background */}
-                </div>
+            {/* Floating Experience Button - Ninth Animation */}
+            <div className="absolute bottom-4 right-4 animate-fade-in-up animation-delay-1000">
+              <div className="exp-floating-btn w-16 h-16 lg:w-20 lg:h-20 hover:scale-110 transition-transform duration-300 cursor-pointer animate-bounce">
+                {/* Experience button image loaded via CSS background */}
               </div>
             </div>
           </div>
